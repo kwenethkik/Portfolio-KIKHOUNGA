@@ -1,0 +1,19 @@
+stages:
+  - test
+  - deploy
+
+# Étape 1 : Tester ton code HTML, CSS et JS
+validate_site:
+  stage: test
+  image: node:20
+  before_script:
+    - npm install -g htmlhint stylelint eslint
+  script:
+    # Vérifie la syntaxe HTML
+    - htmlhint ./*.html
+    # Vérifie le CSS
+    - stylelint "**/*.css"
+    # Vérifie le JS
+    - eslint "**/*.js" --max-warnings=0
+  only:
+    - main
