@@ -15,6 +15,6 @@ validate_site:
     # Vérification et correction automatique CSS
     - npx stylelint "**/*.css" --config .stylelintrc.json --fix || true
     # Vérification JS (avec config ESLint)
-    - npx eslint "**/*.js" --config .eslintrc.json --max-warnings=0
+    - npx eslint "**/*.js" --config .eslintrc.cjs --max-warnings=0
   only:
     - main
