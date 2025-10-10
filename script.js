@@ -750,7 +750,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tooltipEl.textContent = tooltip;
                 tooltipEl.style.cssText = `
                     position: absolute;
-                    background: rgba(2, 6, 23, 0.95);
+                    background: rgb(2 6 23 / 95%);
                     color: white;
                     padding: 0.5rem 1rem;
                     border-radius: 0.5rem;
