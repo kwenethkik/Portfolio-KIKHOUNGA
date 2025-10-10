@@ -1,10 +1,10 @@
 // ==========================================
 // TECH FUSION DESIGN - Portfolio Kweneth
-// Script JavaScript avec animations avancées
+// Script JavaScript avec animations avancÃ©es
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Portfolio Kweneth - Tech Fusion initialisé');
+    console.log('ðŸš€ Portfolio Kweneth - Tech Fusion initialisÃ©');
     
     // ==========================================
     // SMOOTH SCROLL NAVIGATION
@@ -34,10 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // HEADER SCROLL EFFECTS
+    // HEADER SCROLL EFFECTS - CORRIGÃ‰
     // ==========================================
     const header = document.querySelector('header');
-    let lastScrollY = window.scrollY;
 
     function handleHeaderScroll() {
         const currentScrollY = window.scrollY;
@@ -47,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             header.classList.remove('scrolled');
         }
-
-        lastScrollY = currentScrollY;
     }
 
     window.addEventListener('scroll', debounce(handleHeaderScroll, 10));
@@ -71,19 +68,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observer tous les éléments animés
+    // Observer tous les Ã©lÃ©ments animÃ©s
     const animatedElements = document.querySelectorAll(
         '.timeline-item, .formation-card, .skill-category, .language-item, .project-card'
     );
 
     animatedElements.forEach((el, index) => {
-        // Délai d'animation basé sur l'index
+        // DÃ©lai d'animation basÃ© sur l'index
         el.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(el);
     });
 
     // ==========================================
-    // BARRES DE PROGRESSION LANGUES
+    // BARRES DE PROGRESSION LANGUES - CORRIGÃ‰
     // ==========================================
     function animateLanguageBars() {
         const languageItems = document.querySelectorAll('.language-item');
@@ -93,8 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.isIntersecting) {
                     const progressBar = entry.target.querySelector('.language-progress');
                     if (progressBar) {
-                        const targetWidth = progressBar.style.width;
-                        // Animation avec délai
+                        // Animation avec dÃ©lai (la largeur est dÃ©jÃ  dÃ©finie en inline dans le HTML)
                         setTimeout(() => {
                             progressBar.style.transition = 'width 1.5s ease-in-out';
                         }, 300);
@@ -125,18 +121,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.transform = 'scale(0.95)';
                 
                 const originalHTML = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Téléchargement...';
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> TÃ©lÃ©chargement...';
                 
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
-                    this.innerHTML = '<i class="fas fa-check"></i> Téléchargé !';
+                    this.innerHTML = '<i class="fas fa-check"></i> TÃ©lÃ©chargÃ© !';
                     
                     setTimeout(() => {
                         this.innerHTML = originalHTML;
                     }, 2000);
                 }, 1500);
                 
-                console.log('Téléchargement du CV de Kweneth KIKHOUNGA...');
+                console.log('TÃ©lÃ©chargement du CV de Kweneth KIKHOUNGA...');
             });
         });
     }
@@ -147,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // PROJECT GALLERY INTERACTION
     // ==========================================
     function initProjectGallery() {
-        console.log('🎬 Initialisation de la galerie projets...');
+        console.log('ðŸŽ¬ Initialisation de la galerie projets...');
         
         const projectCards = document.querySelectorAll('.project-card');
         console.log(`Nombre de cartes projet: ${projectCards.length}`);
@@ -158,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const navBtns = card.querySelectorAll('.nav-btn');
             
             if (!mainImage) {
-                console.warn('⚠️ Pas d\'image principale dans carte', cardIndex);
+                console.warn('âš ï¸ Pas d\'image principale dans carte', cardIndex);
                 return;
             }
             
@@ -172,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            console.log(`📦 Carte ${cardIndex + 1}: ${images.length} images`);
+            console.log(`ðŸ“¦ Carte ${cardIndex + 1}: ${images.length} images`);
             
             let currentIndex = 0;
             
@@ -187,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 thumb.addEventListener('click', function() {
-                    console.log(`🖱️ Clic sur thumbnail ${thumbIndex + 1}`);
+                    console.log(`ðŸ–±ï¸ Clic sur thumbnail ${thumbIndex + 1}`);
                     
                     // Animation de l'image principale
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
@@ -195,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     mainImage.style.transform = 'scale(0.95)';
                     
                     setTimeout(() => {
-                        // Échanger les sources
+                        // Ã‰changer les sources
                         const tempSrc = mainImage.src;
                         mainImage.src = thumbImg.src;
                         thumbImg.src = tempSrc;
@@ -204,16 +200,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         mainImage.style.opacity = '1';
                         mainImage.style.transform = 'scale(1)';
                         
-                        console.log('✅ Images échangées');
+                        console.log('âœ… Images Ã©changÃ©es');
                     }, 300);
                 });
             });
             
             // Gestion des boutons de navigation
             if (navBtns.length === 2 && images.length > 1) {
-                // Bouton précédent
+                // Bouton prÃ©cÃ©dent
                 navBtns[0].addEventListener('click', () => {
-                    console.log('⬅️ Navigation précédente');
+                    console.log('â¬…ï¸ Navigation prÃ©cÃ©dente');
                     
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     mainImage.style.opacity = '0';
@@ -230,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Bouton suivant
                 navBtns[1].addEventListener('click', () => {
-                    console.log('➡️ Navigation suivante');
+                    console.log('âž¡ï¸ Navigation suivante');
                     
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     mainImage.style.opacity = '0';
@@ -260,14 +256,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tabButtons.length === 0) return;
         
         function switchTab(targetTab) {
-            // Désactiver tous les boutons et contenus
+            // DÃ©sactiver tous les boutons et contenus
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => {
                 content.classList.remove('active');
                 content.style.display = 'none';
             });
             
-            // Activer le bouton cliqué
+            // Activer le bouton cliquÃ©
             const activeButton = document.querySelector(`[data-tab="${targetTab}"]`);
             if (activeButton) {
                 activeButton.classList.add('active');
@@ -308,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!nav || !navLinks) return;
         
-        // Créer le bouton mobile s'il n'existe pas
+        // CrÃ©er le bouton mobile s'il n'existe pas
         let mobileToggle = document.querySelector('.mobile-menu-toggle');
         
         if (!mobileToggle) {
@@ -421,68 +417,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Délai avant de commencer l'animation
+        // DÃ©lai avant de commencer l'animation
         setTimeout(typeText, 800);
     }
 
     // Activer seulement sur la page d'accueil
     if (document.querySelector('.hero')) {
         initTypingAnimation();
-    }
-
-    // ==========================================
-    // CURSOR TRAIL EFFECT (optionnel)
-    // ==========================================
-    function initCursorTrail() {
-        // Désactivé par défaut, peut être activé si souhaité
-        return;
-        
-        const trail = [];
-        const trailLength = 20;
-        
-        for (let i = 0; i < trailLength; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'cursor-trail-dot';
-            dot.style.cssText = `
-                position: fixed;
-                width: 6px;
-                height: 6px;
-                background: linear-gradient(135deg, var(--cyan), var(--violet));
-                border-radius: 50%;
-                pointer-events: none;
-                opacity: ${1 - i / trailLength};
-                z-index: 9999;
-                transition: transform 0.1s ease;
-            `;
-            document.body.appendChild(dot);
-            trail.push(dot);
-        }
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-        
-        function animateTrail() {
-            let x = mouseX;
-            let y = mouseY;
-            
-            trail.forEach((dot, index) => {
-                dot.style.left = x + 'px';
-                dot.style.top = y + 'px';
-                
-                const nextDot = trail[index + 1] || trail[0];
-                x += (parseFloat(nextDot.style.left) - x) * 0.3;
-                y += (parseFloat(nextDot.style.top) - y) * 0.3;
-            });
-            
-            requestAnimationFrame(animateTrail);
-        }
-        
-        animateTrail();
     }
 
     // ==========================================
@@ -506,7 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simuler l'envoi (remplacer par vraie logique)
             setTimeout(() => {
-                submitBtn.textContent = '✓ Message envoyé !';
+                submitBtn.textContent = 'âœ“ Message envoyÃ© !';
                 submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 
                 setTimeout(() => {
@@ -531,15 +472,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const entries = list.getEntries();
                 entries.forEach(entry => {
                     if (entry.entryType === 'navigation') {
-                        console.log(`⚡ Page chargée en ${Math.round(entry.loadEventEnd - entry.loadEventStart)}ms`);
+                        console.log(`âš¡ Page chargÃ©e en ${Math.round(entry.loadEventEnd - entry.loadEventStart)}ms`);
                     }
                 });
             });
             
             try {
                 observer.observe({ entryTypes: ['navigation'] });
-            } catch (e) {
-                console.log('Performance monitoring non supporté');
+            } catch (error) {
+                console.log('Performance monitoring non supportÃ©');
             }
         }
     }
@@ -547,14 +488,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceMonitoring();
 
     // ==========================================
-    // EASTER EGG - KONAMI CODE
+    // EASTER EGG - KONAMI CODE - CORRIGÃ‰
     // ==========================================
     function initEasterEgg() {
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
         
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
+        document.addEventListener('keydown', (event) => {
+            if (event.key === konamiCode[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
                     activateEasterEgg();
@@ -566,7 +507,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         function activateEasterEgg() {
-            console.log('🎮 Konami Code activé!');
+            console.log('ðŸŽ® Konami Code activÃ©!');
             document.body.style.animation = 'rainbow 2s ease infinite';
             
             setTimeout(() => {
@@ -648,7 +589,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // SCROLL TO TOP BUTTON
     // ==========================================
     function initScrollToTop() {
-        // Créer le bouton
+        // CrÃ©er le bouton
         const scrollBtn = document.createElement('button');
         scrollBtn.className = 'scroll-to-top';
         scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -723,15 +664,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollProgress();
 
     // ==========================================
-    // DARK/LIGHT MODE TOGGLE (optionnel)
-    // ==========================================
-    function initThemeToggle() {
-        // Désactivé par défaut car le design est optimisé pour le dark mode
-        // Peut être activé si besoin d'un mode clair
-        return;
-    }
-
-    // ==========================================
     // SAVE SCROLL POSITION
     // ==========================================
     function initScrollMemory() {
@@ -786,7 +718,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     await navigator.clipboard.writeText(textToCopy);
                     
                     const originalText = this.textContent;
-                    this.textContent = '✓ Copié !';
+                    this.textContent = 'âœ“ CopiÃ© !';
                     this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                     
                     setTimeout(() => {
@@ -888,7 +820,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.alignItems = 'center';
                 this.style.justifyContent = 'center';
                 this.style.minHeight = '200px';
-                this.alt = '🖼️ Image non disponible';
+                this.alt = 'ðŸ–¼ï¸ Image non disponible';
             });
         });
     }
@@ -899,8 +831,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ANALYTICS (optionnel)
     // ==========================================
     function initAnalytics() {
-        // À implémenter selon vos besoins (Google Analytics, etc.)
-        console.log('📊 Analytics initialisé');
+        // Ã€ implÃ©menter selon vos besoins (Google Analytics, etc.)
+        console.log('ðŸ“Š Analytics initialisÃ©');
     }
 
     initAnalytics();
@@ -908,15 +840,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // CONSOLE EASTER EGG
     // ==========================================
-    console.log('%c🚀 Portfolio Kweneth KIKHOUNGA', 'font-size: 20px; font-weight: bold; color: #06b6d4;');
-    console.log('%cIngénieur RF & Télécommunications', 'font-size: 14px; color: #8b5cf6;');
+    console.log('%cðŸš€ Portfolio Kweneth KIKHOUNGA', 'font-size: 20px; font-weight: bold; color: #06b6d4;');
+    console.log('%cIngÃ©nieur RF & TÃ©lÃ©communications', 'font-size: 14px; color: #8b5cf6;');
     console.log('%cMerci de visiter mon portfolio !', 'font-size: 12px; color: #94a3b8;');
-    console.log('%c\nVous cherchez à collaborer ? 👉 kwenethl@gmail.com', 'font-size: 12px; color: #f97316;');
+    console.log('%c\nVous cherchez Ã  collaborer ? ðŸ‘‰ kwenethl@gmail.com', 'font-size: 12px; color: #f97316;');
     
     // ==========================================
     // LOG FINAL
     // ==========================================
-    console.log('✅ Toutes les fonctionnalités initialisées avec succès');
+    console.log('âœ… Toutes les fonctionnalitÃ©s initialisÃ©es avec succÃ¨s');
 });
 
 // ==========================================
@@ -948,7 +880,7 @@ function throttle(func, delay) {
     };
 }
 
-// Vérifier si un élément est visible
+// VÃ©rifier si un Ã©lÃ©ment est visible
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
     return (
@@ -959,7 +891,7 @@ function isElementInViewport(el) {
     );
 }
 
-// Générer un ID unique
+// GÃ©nÃ©rer un ID unique
 function generateUniqueId() {
     return 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 }
@@ -1003,14 +935,14 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 if (prefersReducedMotion.matches) {
     document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-    console.log('♿ Mode accessibilité : animations réduites');
+    console.log('â™¿ Mode accessibilitÃ© : animations rÃ©duites');
 }
 
 // ==========================================
 // SERVICE WORKER (optionnel - PWA)
 // ==========================================
 if ('serviceWorker' in navigator) {
-    // Désactivé par défaut
+    // DÃ©sactivÃ© par dÃ©faut
     // navigator.serviceWorker.register('/sw.js');
 }
 
