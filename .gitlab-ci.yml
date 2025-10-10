@@ -7,13 +7,15 @@ validate_site:
   stage: test
   image: node:20
   before_script:
-    - npm install -g htmlhint stylelint eslint
+    # Installation globale des outils
+    - npm install -g htmlhint stylelint eslint stylelint-config-standard
   script:
-    # Vérifie la syntaxe HTML
+    # Vérification HTML
     - htmlhint ./*.html
-    # Vérifie le CSS
+    # Vérification CSS (avec fichier config)
     - npx stylelint "**/*.css" --config .stylelintrc.json
-    # Vérifie le JS
+    # Vérification JS (avec config ESLint)
     - npx eslint "**/*.js" --config .eslintrc.json --max-warnings=0
   only:
     - main
+
