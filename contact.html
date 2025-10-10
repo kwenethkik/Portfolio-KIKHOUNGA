@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Kweneth KIKHOUNGA</title>
+    <meta name="description" content="Contactez Kweneth KIKHOUNGA pour vos projets en ingénierie RF et télécommunications">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Kweneth<span>.</span></a>
+            
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                
+                    <li><a href="cv.html">CV</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="contact.html" class="cta-button">Recrutez-moi</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-page">
+            <div class="container">
+                <div class="contact-layout">
+                    <div class="contact-form-section">
+                        <h1>Travaillons ensemble</h1>
+                        <p class="contact-subtitle">Contactez-moi pour discuter de votre projet.</p>
+                        
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-row">
+                                <input type="text" name="firstName" placeholder="Prénom" required>
+                                <input type="text" name="lastName" placeholder="Nom de famille" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <input type="email" name="email" placeholder="Adresse e-mail" required>
+                                <input type="tel" name="phone" placeholder="Numéro de téléphone">
+                            </div>
+                            
+                            <select name="service" required>
+                                <option value="">Sélectionner un service</option>
+                                <option value="ingenierie-rf">Ingénierie RF/Hyperfréquences</option>
+                                <option value="gestion-projets">Gestion de projets techniques</option>
+                                <option value="optimisation-processus">Optimisation processus</option>
+                                <option value="consulting">Consulting technique</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                            
+                            <textarea name="message" placeholder="Tapez votre message ici." rows="6" required></textarea>
+                            
+                            <button type="submit" class="submit-btn">
+                                Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info-section">
+                        <div class="contact-item">
+                            <div class="contact-icon phone-icon">📞</div>
+                            <div class="contact-details">
+                                <h3>Téléphone</h3>
+                                <p><a href="tel:+33753807484">07 53 80 74 84</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon email-icon">✉️</div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p><a href="mailto:kwenethl@gmail.com">kwenethl@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon location-icon">📍</div>
+                            <div class="contact-details">
+                                <h3>Adresse</h3>
+                                <p>Toulouse, France<br>Mobilité nationale et internationale</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon github-icon">💻</div>
+                            <div class="contact-details">
+                                <h3>GitHub</h3>
+                                <p><a href="https://github.com/kwenethkik" target="_blank">github.com/kwenethkik</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon linkedin-icon">💼</div>
+                            <div class="contact-details">
+                                <h3>LinkedIn</h3>
+                                <p><a href="https://www.linkedin.com/in/kweneth-kikhounga-7b6279260/" target="_blank">linkedin.com/in/kweneth-kikhounga</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="availability-section">
+                    <div class="availability-card">
+                        <div class="availability-icon">✅</div>
+                        <div class="availability-content">
+                            <h3>Disponibilité</h3>
+                            <p><strong>En recherche active d'un CDI</strong></p>
+                            <p>Disponible pour projets de consulting</p>
+                            <p>Réponse sous 24h garantie</p>
+                        </div>
+                    </div>
+                    
+                    <div class="specialties-card">
+                        <h3>Domaines d'expertise</h3>
+                        <div class="specialty-tags">
+                            <span>Ingénierie RF</span>
+                            <span>Télécommunications </span>
+                            <span>Gestion de projets Agile</span>
+                            <span>Optimisation processus</span>
+                            <span>Simulation MATLAB/ADS</span>
+                            <span>Analyse de données</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <h2>Prêt à démarrer votre projet ?</h2>
+                    <p>Discutons de vos besoins et trouvons la solution technique adaptée</p>
+                    <div class="cta-buttons">
+                        <a href="tel:+33753807484" class="btn-primary">
+                            📞 Appeler maintenant
+                        </a>
+                        <a href="mailto:kwenethl@gmail.com" class="btn-secondary">
+                            ✉️ Envoyer un email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+   
+   </body>
+</html>

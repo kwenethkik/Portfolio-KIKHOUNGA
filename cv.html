@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Kweneth Kikhounga</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+        <nav>
+            <a href="#accueil" class="logo">Kweneth<span>.</span></a>
+            
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    
+                    <li><a href="cv.html" class="active">CV</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html" class="cta-button">Recrutez-moi</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1>Mon Parcours Professionnel</h1>
+                <div class="hero-subtitle">
+                    Double Master : Photonique, Hyperfréquences et Systèmes de communication &  Management SI
+                </div>
+
+               <div class="cv-download-buttons">
+                    <a href="Ingénieur_RF_Hyperfréquences.pdf" class="cv-download-btn" download>
+                        <i class="fas fa-download"></i>
+                            CV Ingénieur Systèmes RF & Hyperfréquences
+                    </a>
+                    <a href="CV_Chef_de_projet.pdf" class="cv-download-btn" download>
+                        <i class="fas fa-download"></i>
+                            CV Chef de Projet IT
+                    </a>
+            </div>
+            </div>
+        </section>
+
+        <!-- Navigation des sections -->
+        <section class="cv-navigation">
+            <div class="container">
+                <div class="nav-tabs">
+                    <button class="tab-btn active" data-tab="experience">
+                        <i class="fas fa-briefcase"></i>
+                        Expérience
+                    </button>
+                    <button class="tab-btn" data-tab="formation">
+                        <i class="fas fa-graduation-cap"></i>
+                        Formation
+                    </button>
+                    <button class="tab-btn" data-tab="competences">
+                        <i class="fas fa-code"></i>
+                        Compétences
+                    </button>
+                    <button class="tab-btn" data-tab="about">
+                        <i class="fas fa-user"></i>
+                        À propos de moi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenu des sections -->
+        <section class="cv-content">
+            <div class="container">
+                
+                <!-- Section Expérience -->
+                <div id="experience" class="tab-content active">
+                    <h2>Mon expérience professionnelle</h2>
+                    <div class="timeline">
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">
+                                    <i class="fas fa-briefcase"></i> Fév 2025 - Août 2025</div>
+                                <div class="timeline-title">Projet d'ingénierie et Modélisation Radio</div>
+                                <div class="timeline-company">Orange France, Montpellier</div>
+                               
+                                <ul class="timeline-description">
+                                    <li>Réalisé la modélisation des phénomènes de propagation en milieu urbain dense (réflexion, diffraction, multi-trajets)</li>
+                                    <li>Mis en œuvre le modèle Ray Tracing 3D pour quantifier l'atténuation et la dégradation du signal en hautes fréquences (23 GHz)</li>
+                                    <li>Conduit des simulations sous MATLAB et l'analyse de la puissance de réception intégrant la ligne de visée (LoS)</li>
+                                    <li>Déterminé des indicateurs de performance permettant d'anticiper les zones d'ombre et d'optimiser l'implantation des antennes FH</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-dot"></div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">
+                                    <i class="fas fa-briefcase"></i> Sept. 2024 - Fév. 2025</div>
+                                <div class="timeline-title">Conception d'antennes hyperfréquences</div>
+                                <div class="timeline-company">Orange France, Montpellier</div>
+                                <ul class="timeline-description">
+                                    <li>Conçu et optimisé une antenne Cassegrain bi-bande (23/80 GHz) pour les liaisons faisceaux hertziens et le déploiement 5G</li>
+                                    <li>Implémenté la technique de Carrier Aggregation pour combiner les bandes K et E et améliorer fiabilité et débits</li>
+                                    <li>Réalisé des simulations électromagnétiques sous CST Studio Suite afin d'analyser les coefficients de réflexion</li>
+                                    <li>Analysé et validé la directivité, l'efficacité et la faible perte par retour pour des applications 5G longue distance</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-dot"></div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">
+                                    <i class="fas fa-briefcase"></i> Sept. 2023 - Août 2025</div>
+                                <div class="timeline-title">Chef de projet déploiement réseaux 5G</div>
+                                <div class="timeline-company">Orange France, Montpellier</div>
+                                <ul class="timeline-description">
+                                    <li>Conçu, simulé et optimisé des liaisons radio 5G (23/80 GHz) avec ATOLL et Séria</li>
+                                    <li>Étudié et validé les performances réseau en mettant l'accent sur le débit et la Qualité de Service (QoS)</li>
+                                    <li>Coordonné des équipes multidisciplinaires et suivi le projet selon la méthodologie Agile</li>
+                                    <li>Appliqué les recommandations UIT et élaboré des rapports d'ingénierie pour la validation des projets</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-dot"></div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">
+                                    <i class="fas fa-briefcase"></i> 2021 - 2022</div>
+                                <div class="timeline-title">Technicien Supérieur en Télécommunications Aéronautiques</div>
+                                <div class="timeline-company">ASECNA CONGO</div>
+                                <ul class="timeline-description">
+                                    <li>Assuré l’exploitation et la supervision des systèmes de télécommunications aéronautiques (RSFTA/AMHS, ATS/DS, SMT, AIDC et VHF déportées)</li>
+                                    <li>Analysé la qualité de service des réseaux SFA et SMA supportés par le réseau AFISNET à Niamey</li>
+                                    <li>Mesuré la disponibilité des équipements de communication aéronautique et évalué les indicateurs de performance (KPI/ICP)</li>
+                                    <li>Utilisé et configuré les logiciels AMHS, MESSIR et systèmes de communication sol-sol/sol-air</li>
+                                    <li>Participé à la maintenance préventive et corrective des équipements radioélectriques et informatiques de l’unité CNS</li>
+                                    <li>Rédigé des rapports techniques sur la disponibilité et la performance des systèmes télécoms aéronautiques</li>
+                                    <li>Effectué des enquêtes de satisfaction auprès des agents de la représentation ASECNA pour l’évaluation du service</li>
+                                    <li>Appliqué les normes et recommandations OACI et ISO (SMI/SMQ) pour garantir la fiabilité et la sécurité des communications aéronautiques</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-dot"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Section Formation -->
+                <div id="formation" class="tab-content">
+                    <h2>Ma formation académique</h2>
+                    <div class="formation-grid">
+                        
+                        <div class="formation-card">
+                            <div class="formation-header">
+                                <div class="formation-title">Master Photonique, Hyperfréquences et Systèmes de communication</div>
+                                <div class="formation-date">2023-2025</div>
+                            </div>
+                            <div class="formation-school">Université de Montpellier - Département EEA</div>
+                            <div class="formation-description">
+                                 Formation théorique et pratique en photonique et hyperfréquences pour générer, transmettre et traiter les ondes électromagnétiques (radio, micro-ondes, térahertz, optique). Maîtrise des composants (lasers, antennes, fibres optiques) et systèmes (radars, lidars, télécoms 5G). Utilisation intensive d'équipements professionnels et de simulateurs numériques (ADS, CST Studio).
+                             </div>
+                              <a href="https://hermes.edu.umontpellier.fr/enseignement/" target="_blank" class="social-link" title="Formation - Université de Montpellier">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                     <path d="M5,13.18v4L12,21l7-3.82v-4L12,17ZM12,3,1,9l11,6,9-4.91V17h2V9Z"/>
+                                </svg>
+                              </a>
+                        </div>
+                        
+                        
+                        <div class="formation-card">
+                            <div class="formation-header">
+                                <div class="formation-title">Master Management des Systèmes d'Informations - Management des Technologies et sciences (MTS)</div>
+                                <div class="formation-date">2023-2025</div>
+                            </div>
+                            <div class="formation-school">IAE Montpellier</div>
+                            <div class="formation-description">
+                                Spécialisation en gestion de projet IT. Acquisition de compétences en management de projets technologiques et systèmes d'information.
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="formation-card">
+                            <div class="formation-header">
+                                <div class="formation-title">Licence Electronique, Energie Electrique et Automatique (EEA)</div>
+                                <div class="formation-date">2022 -2023</div>
+                            </div>
+                            <div class="formation-school">Université de Montpellier - Département EEA</div>
+                            <div class="formation-description">
+                                Formation basée sur la résolution des problèmes de l'EEA en sachant utiliser les outils et techniques de l'ingénieur et les connaissances théoriques et pratiques du domaine de l'EEA.
+                            </div>
+                        </div>
+
+                        <div class="formation-card">
+                            <div class="formation-header">
+                                <div class="formation-title">Niveau Master 2 Génie Electrique et Electronique</div>
+                                <div class="formation-date">2020 - 2022</div>
+                            </div>
+                            <div class="formation-school">Ecole Nationale Supérieure Polytechnique, Congo</div>
+                            <div class="formation-description">
+                                Ce programme vise à développer les aptitudes à assumer de multiples fonctions techniques (conception, maintenance, production, recherche et développement).
+                            </div>
+                        </div>
+
+
+
+                         <div class="formation-card">
+                            <div class="formation-header">
+                                <div class="formation-title">Diplôme de Technicien supérieur en Télécommunications Aéronautiques</div>
+                                <div class="formation-date">2017 - 2019</div>
+                            </div>
+                            <div class="formation-school">Ecole Africaine de Météorologie et de l'Aviation Civie (EAMAC), NIGER</div>
+                            <div class="formation-description">
+                                La formation met l’accent sur la maîtrise des réseaux SFA et SMA, la maintenance des équipements, et l’application des normes OACI pour la sécurité de la navigation aérienne.
+                            </div>
+                        </div>
+
+                        <div class="formation-card">
+                            <div class="formation-header">
+                                <div class="formation-title">Licence en sciences physiques</div>
+                                <div class="formation-date">2014 - 2017</div>
+                            </div>
+                            <div class="formation-school">Ecole Nationale Supérieure (ENS), Congo</div>
+                            <div class="formation-description">
+                                La formation vise à former des professeurs en sciences physiques.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Section Compétences -->
+<div id="competences" class="tab-content">
+    <h2>Mes compétences techniques</h2>
+    
+    <div class="skills-categories">
+        
+        <!-- RF & Télécommunications -->
+        <div class="skill-category">
+            <h3><i class="fas fa-broadcast-tower"></i> RF & Télécommunications</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Modélisation Radio 5G</span>
+                <span class="skill-tag">Ray Tracing 3D</span>
+                <span class="skill-tag">Propagation EM</span>
+                <span class="skill-tag">Faisceaux Hertziens</span>
+                <span class="skill-tag">23/80 GHz</span>
+                <span class="skill-tag">Bandes K et E</span>
+                <span class="skill-tag">Carrier Aggregation</span>
+                <span class="skill-tag">QoS/Débit</span>
+                <span class="skill-tag">Bilan de liaison</span>
+                <span class="skill-tag">Formules de Friis</span>
+            </div>
+        </div>
+
+        <!-- Antennes & Hyperfréquences -->
+        <div class="skill-category">
+            <h3><i class="fas fa-satellite-dish"></i> Antennes & Hyperfréquences</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Antennes actives et passives</span>
+                <span class="skill-tag">Diagrammes de rayonnement</span>
+                <span class="skill-tag">Gain et directivité</span>
+                <span class="skill-tag">Adaptation d'impédance</span>
+                <span class="skill-tag">Paramètres S</span>
+                <span class="skill-tag">Circulateurs RF</span>
+                <span class="skill-tag">Coupleurs directifs</span>
+                <span class="skill-tag">Smith Chart</span>
+                <span class="skill-tag">ROS/VSWR</span>
+            </div>
+        </div>
+
+        <!-- Systèmes & Mesures RF -->
+        <div class="skill-category">
+            <h3><i class="fas fa-radar"></i> Systèmes & Mesures RF</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Systèmes RADAR</span>
+                <span class="skill-tag">Front-End RF</span>
+                <span class="skill-tag">Synthétiseurs de fréquence</span>
+                <span class="skill-tag">Mélangeurs</span>
+                <span class="skill-tag">Conversion de fréquence</span>
+                <span class="skill-tag">Non-linéarités (P1dB, IP3)</span>
+                <span class="skill-tag">Filtres passe-bande</span>
+                <span class="skill-tag">RFID/NFC (13.56 MHz)</span>
+                <span class="skill-tag">Modulations ASK/FSK</span>
+                <span class="skill-tag">ISO 14443</span>
+            </div>
+        </div>
+
+        <!-- Instrumentation RF -->
+        <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Instrumentation RF Professionnelle</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Analyseur de spectre R&S</span>
+                <span class="skill-tag">VNA (Vector Network Analyzer)</span>
+                <span class="skill-tag">Oscilloscope Tektronix</span>
+                <span class="skill-tag">Générateurs RF</span>
+                <span class="skill-tag">Calibration Full 2 Ports</span>
+                <span class="skill-tag">Mesures hyperfréquences</span>
+                <span class="skill-tag">Sondes courant/tension</span>
+                <span class="skill-tag">Analyseur d'impédance</span>
+            </div>
+        </div>
+
+        <!-- CEM & Compatibilité -->
+        <div class="skill-category">
+            <h3><i class="fas fa-bolt"></i> CEM & Compatibilité Électromagnétique</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Couplage EM</span>
+                <span class="skill-tag">Diaphonie inductive/capacitive</span>
+                <span class="skill-tag">Impédance commune</span>
+                <span class="skill-tag">Blindage RF</span>
+                <span class="skill-tag">Plans de masse PCB</span>
+                <span class="skill-tag">Normes CEM</span>
+                <span class="skill-tag">Analyse d'interférences</span>
+                <span class="skill-tag">Filtrage EMI</span>
+            </div>
+        </div>
+
+        <!-- Logiciels de simulation RF -->
+        <div class="skill-category">
+            <h3><i class="fas fa-desktop"></i> Logiciels de Simulation RF</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">CST Studio Suite</span>
+                <span class="skill-tag">ATOLL</span>
+                <span class="skill-tag">Séria</span>
+                <span class="skill-tag">MATLAB</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">ADS (Advanced Design System)</span>
+            </div>
+        </div>
+
+        <!-- Développement & Programmation -->
+        <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Développement & Programmation</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">MATLAB</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">HTML5/CSS3</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">C/C++</span>
+                <span class="skill-tag">SQL</span>
+            </div>
+        </div>
+
+        <!-- Outils Scientifiques & Analyse -->
+        <div class="skill-category">
+            <h3><i class="fas fa-calculator"></i> Outils Scientifiques & Analyse de Données</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">NumPy/SciPy</span>
+                <span class="skill-tag">Matplotlib</span>
+                <span class="skill-tag">Excel VBA</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">LaTeX</span>
+            </div>
+        </div>
+
+    
+        <!-- Gestion de Projet & Méthodologies -->
+        <div class="skill-category">
+            <h3><i class="fas fa-project-diagram"></i> Gestion de Projet & Méthodologies</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Agile/Scrum</span>
+                <span class="skill-tag">Lean Management</span>
+                <span class="skill-tag">Kanban</span>
+
+                <span class="skill-tag">SharePoint</span>
+                <span class="skill-tag">Git/GitHub</span>
+                <span class="skill-tag">Management d'équipe</span>
+                <span class="skill-tag">Coordination multidisciplinaire</span>
+            </div>
+        </div>
+
+        <!-- Normes & Protocoles -->
+        <div class="skill-category">
+            <h3><i class="fas fa-file-contract"></i> Normes & Protocoles Télécoms</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Recommandations UIT</span>
+                <span class="skill-tag">Normes 5G/6G</span>
+                <span class="skill-tag">ISO 14443 (RFID)</span>
+                <span class="skill-tag">Protocoles FH</span>
+                <span class="skill-tag">4096-QAM</span>
+                <span class="skill-tag">Codage Manchester/Miller</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Langues -->
+    <div class="languages-section">
+        <h3>Langues parlées</h3>
+        <div class="languages-grid">
+            
+            <div class="language-item">
+                <div class="language-name">Français</div>
+                <div class="language-level">Natif</div>
+                <div class="language-bar">
+                    <div class="language-progress" style="width: 100%"></div>
+                </div>
+            </div>
+
+            <div class="language-item">
+                <div class="language-name">Anglais</div>
+                <div class="language-level">Courant (B2)</div>
+                <div class="language-bar">
+                    <div class="language-progress" style="width: 85%"></div>
+                </div>
+            </div>
+
+            <div class="language-item">
+                <div class="language-name">Lingala</div>
+                <div class="language-level">Natif</div>
+                <div class="language-bar">
+                    <div class="language-progress" style="width: 100%"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+                <!-- Section À propos -->
+                <div id="about" class="tab-content">
+                    <h2>À propos de moi</h2>
+                    
+                    <div class="about-content">
+                        
+                        <div class="about-intro">
+                            <p class="about-text">
+                                <p class="about-text">
+                                    Ingénieur passionné par les télécommunications et l'innovation technologique, je maîtrise l'ensemble de la chaîne RF : conception d'antennes et de systèmes émetteurs-récepteurs, modélisation de propagation radio, déploiement de réseaux 5G et faisceaux hertziens, caractérisation de systèmes RADAR. Cette expertise technique en hyperfréquences, combinée à une solide expérience en gestion de projets Agile et à mon double parcours académique (Master Photonique, Hyperfréquences et Systèmes de communications & Master Management des SI), me permet d'accompagner les projets télécoms avec une vision à la fois technique, opérationnelle et stratégique.
+                                </p>
+                        </div>
+
+                        <div class="about-grid">
+
+                            <div class="about-card">
+                                <div class="about-icon">
+                                    <i class="fas fa-signal"></i>
+                                </div>
+                                <h3>Expertise Télécoms</h3>
+                                <p>
+                                    Spécialisé dans la modélisation des systèmes 5G, la conception d'antennes hyperfréquences et l'optimisation des réseaux radio. Ma maîtrise des outils de simulation (CST Studio, MATLAB, ATOLL) me permet de résoudre des problématiques complexes de propagation et de couverture réseau.
+                                </p>
+                            </div>
+
+                            <div class="about-card">
+                                <div class="about-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3>Leadership & Management</h3>
+                                <p>
+                                    Chef de projet dans la coordination d'équipes multidisciplinaires. Mon approche Agile et ma capacité à traduire les besoins techniques en solutions business font de moi un pont efficace entre les équipes techniques et le management.
+                                </p>
+                            </div>
+
+                            <div class="about-card">
+                                <div class="about-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3>Formation Continue</h3>
+                                <p>
+                                    Ancien enseignant de physiques, je cultive un esprit pédagogique et une passion pour l'apprentissage continu. Ma curiosité intellectuelle me pousse à rester à la pointe des innovations technologiques et à partager mes connaissances.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="about-values">
+                            <h3>Mes valeurs professionnelles</h3>
+                            <div class="values-grid">
+                                <div class="value-item">
+                                    <strong>Innovation</strong>
+                                    <span>Recherche constante de solutions créatives et efficaces</span>
+                                </div>
+                                <div class="value-item">
+                                    <strong>Excellence</strong>
+                                    <span>Engagement pour la qualité et la performance dans chaque projet</span>
+                                </div>
+                                <div class="value-item">
+                                    <strong>Collaboration</strong>
+                                    <span>Travail d'équipe et communication transparente</span>
+                                </div>
+                                <div class="value-item">
+                                    <strong>Adaptabilité</strong>
+                                    <span>Capacité à évoluer avec les technologies et les besoins</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="about-objectives">
+                            <h3>Mes objectifs professionnels</h3>
+                                <ul class="objectives-list">
+                                <li>Évoluer vers un poste d'architecte systèmes RF/Hyperfréquences dans les secteurs télécoms, spatial, défense ou SATCOM</li>
+                                <li>Développer une expertise managériale confirmée en pilotant des équipes techniques sur des projets à fort enjeu</li>
+                                <li>Contribuer à l'innovation sur des systèmes avancés : réseaux 5G/6G, RADAR, télécommunications satellitaires, systèmes embarqués</li>
+                                <li>Devenir un leader technique reconnu capable d'allier vision stratégique, excellence opérationnelle et innovation de rupture</li>
+                                </ul>
+                        </div>
+
+                        <div class="about-contact">
+                            <h3>Informations personnelles</h3>
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Toulouse, France</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>Permis B - Véhiculé</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-globe"></i>
+                                    <span>Mobilité nationale & internationale</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <script>
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        // Retirer la classe active de tous les boutons
+        document.querySelectorAll('.tab-btn').forEach(function(b) {
+            b.classList.remove('active');
+        });
+        // Ajouter la classe active au bouton cliqué
+        btn.classList.add('active');
+
+        // Masquer toutes les sections
+        document.querySelectorAll('.tab-content').forEach(function(tab) {
+            tab.classList.remove('active');
+        });
+        // Afficher la section liée au bouton cliqué
+        var tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+</script>
+
+    <script src="script.js"></script>
+</body>
+</html>

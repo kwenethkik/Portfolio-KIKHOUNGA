@@ -1,0 +1,184 @@
+clc; clear; close all;
+
+%%  Paramètres physiques 
+f = 23e9; % Fréquence (Hz)
+lambda = 3e8 / f; % Longueur d'onde (m)
+k = 2 * pi / lambda; % Nombre d'onde
+Pt_dBm = 30; % Puissance émise (dBm)
+Pt = 10^((Pt_dBm - 30) / 10); % Conversion en watts
+
+%%  Antennes paraboliques 
+Gt_dBi = 40; Gr_dBi = 40; % Gains TX/RX
+Gt = 10^(Gt_dBi / 10);
+Gr = 10^(Gr_dBi / 10);
+
+%%  Matériau réfléchi (mur béton) 
+epsilon_r = 5.24;
+a = 1 / epsilon_r; % Polarisation verticale
+
+%  Paramètres géométriques 
+ht = 20; % Hauteur TX (m)
+hr = 15; % Hauteur RX (m)
+h_mur = 18; % Hauteur sommet mur
+x_mur = 30; % Position du mur
+x_rx = linspace(1, 100, 1000); % Récepteur de 1 à 100 m
+
+%% === Initialisation des vecteurs ===
+Pr_total = zeros(size(x_rx));
+Pr_los = zeros(size(x_rx));
+Pr_ref = zeros(size(x_rx));
+Pr_diff = zeros(size(x_rx));
+
+%% === Boucle principale
+for i = 1:length(x_rx)
+    x = x_rx(i);
+    
+    % LOS (toujours présent) 
+    r1 = sqrt(x^2 + (hr - ht)^2);
+    E1 = (1 / r1) * exp(-1j * k * r1);
+    
+    % ========== RÉFLEXION (seulement si géométrie valide) ==========
+    if x > x_mur
+        % Position de l'image TX par rapport au mur
+        x_tx_image = 2 * x_mur - 0; % TX à x=0, image à 2*x_mur
+        
+        % Distance du trajet réfléchi
+        r2 = sqrt((x - x_tx_image)^2 + (hr - ht)^2);
+        
+        % % Angle d'incidence au mur
+        % dx = x - x_mur;
+        % dy = hr - ht;
+        % alpha = atan2(dy, dx);
+        % theta = pi/2 - alpha;
+
+% Angle d'incidence au mur (depuis TX vers mur)
+        dx = x_mur; % distance horizontale TX → mur
+        dy = ht - h_mur; % différence de hauteur TX → sommet du mur
+        alpha = atan2(dy, dx); % angle entre rayon incident et l'horizontale
+        theta = pi/2 - alpha;  % angle d'incidence avec la normale au mur
+
+        
+        % Coefficient de réflexion de Fresnel
+        arg = epsilon_r - sin(theta)^2;
+        if arg < 0
+            Gamma = 0;
+        else
+            Gamma = (cos(theta) - a * sqrt(arg)) / ...
+                    (cos(theta) + a * sqrt(arg));
+        end
+        
+        E2 = Gamma * (1 / r2) * exp(-1j * k * r2);
+    else
+        E2 = 0; % Pas de réflexion avant le mur
+    end
+    
+    % ========== DIFFRACTION (modèle knife-edge corrigé) ==========
+    if x <= x_mur
+        E3 = 0; % Pas de diffraction avant le mur
+    else
+        % Hauteur de la ligne de visée au niveau du mur
+        h_los = ht + (hr - ht) * (x_mur / x);
+        h_block = h_mur - h_los;
+        
+        % Distances TX-mur et mur-RX
+        d1 = sqrt(x_mur^2 + (h_mur - ht)^2);
+        d2 = sqrt((x - x_mur)^2 + (hr - h_mur)^2);
+        
+        if d1 > 0 && d2 > 0
+            % Paramètre de Fresnel
+            nu = h_block * sqrt(2 * (d1 + d2) / (lambda * d1 * d2));
+            
+            % Facteur de diffraction
+            if nu < -0.78
+                Dv = 1; % Pas de blocage
+            else
+                Dv = 0.5 * exp(-pi * nu^2 / 2);
+            end
+            
+            % Distance totale du trajet diffracté
+            r3 = d1 + d2;
+            E3 = Dv * (1 / r3) * exp(-1j * k * r3);
+        else
+            E3 = 0;
+        end
+    end
+    
+    % ========== CHAMP TOTAL ==========
+    E_total = E1 + E2 + E3;
+    
+    % ========== CONVERSION EN PUISSANCE ==========
+    coef = (lambda / (4 * pi))^2;
+    
+    % Puissances reçues (avec protection contre valeurs nulles)
+    Pr_total(i) = 10 * log10(max(eps, Pt * Gt * Gr * coef * abs(E_total)^2));
+    Pr_los(i) = 10 * log10(max(eps, Pt * Gt * Gr * coef * abs(E1)^2));
+    Pr_ref(i) = 10 * log10(max(eps, Pt * Gt * Gr * coef * abs(E2)^2));
+    Pr_diff(i) = 10 * log10(max(eps, Pt * Gt * Gr * coef * abs(E3)^2));
+end
+
+%% === Normalisation à 1 mètre ===
+x_ref = 1;
+[~, idx_ref] = min(abs(x_rx - x_ref));
+
+Pr_total_norm = Pr_total - Pr_total(idx_ref);
+Pr_los_norm = Pr_los - Pr_los(idx_ref);
+Pr_ref_norm = Pr_ref - Pr_ref(idx_ref);
+Pr_diff_norm = Pr_diff - Pr_diff(idx_ref);
+
+%% === Tracé des résultats normalisés ===
+figure;
+
+% Subplot 1 : Puissance totale
+subplot(2,2,4);
+plot(x_rx, Pr_total_norm, 'k-', 'LineWidth', 2);
+grid on;
+xlabel('Distance Rx (m)');
+ylabel('Pr totale (dBm)');
+title('Puissance reçue totale (LoS + Réflexion + Diffraction)');
+
+% Subplot 2 : Puissance LoS
+subplot(2,2,1);
+plot(x_rx, Pr_los_norm, 'b--', 'LineWidth', 1.2);
+grid on;
+xlabel('Distance Rx (m)');
+ylabel('Pr LoS (dBm)');
+title('Puissance reçue - Ligne de visée (LoS)');
+
+% Subplot 3 : Puissance réflexion
+subplot(2,2,2);
+plot(x_rx, Pr_ref_norm, 'r--', 'LineWidth', 1.2);
+grid on;
+xlabel('Distance Rx (m)');
+ylabel('Pr réflexion (dBm)');
+title('Puissance reçue - Réflexion sur le mur');
+
+% Subplot 4 : Puissance diffraction
+subplot(2,2,3);
+plot(x_rx, Pr_diff_norm, 'g--', 'LineWidth', 1.2);
+grid on;
+xlabel('Distance Rx (m)');
+ylabel('Pr diffraction (dBm)');
+title('Puissance reçue - Diffraction autour du mur');
+figure;
+
+plot(x_rx, Pr_total_norm); hold on;
+plot(x_rx, Pr_los_norm);
+plot(x_rx, Pr_ref_norm);
+plot(x_rx, Pr_diff_norm);
+legend('Total', 'LOS', 'Réflexion', 'Diffraction');
+% plot(x_rx,Pr_los_norm,Pr_ref_norm,Pr_diff_norm,Pr_total_norm);
+
+% Ligne verticale pour marquer la position du mur
+xline(x_mur, 'g:', 'LineWidth', 2, 'Label', 'Mur');
+
+grid on;
+% xlim([0 100]);
+% ylim([-60 40]);
+
+%% === Vérifications ===
+fprintf('=== VÉRIFICATIONS ===\n');
+fprintf('Position du mur: %.0f m\n', x_mur);
+fprintf('Hauteur du mur: %.0f m\n', h_mur);
+fprintf('TX: %.0f m, RX: %.0f m\n', ht, hr);
+fprintf('Fréquence: %.1f GHz\n', f/1e9);
+fprintf('Longueur d''onde: %.3f m\n', lambda);
