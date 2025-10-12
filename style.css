@@ -1199,7 +1199,7 @@
    }
    
    .tab-btn {
-       display: inline-flex !important
+       display: inline-flex !important;
        align-items: center;
        gap: 0.5rem;
        padding: 1rem 2rem;

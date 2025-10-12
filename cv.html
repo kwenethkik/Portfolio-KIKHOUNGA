@@ -408,7 +408,7 @@
 
             <div class="language-item">
                 <div class="language-name">Anglais</div>
-                <div class="language-level">Courant (B2)</div>
+                <div class="language-level">Courant (C1)</div>
                 <div class="language-bar">
                     <div class="language-progress" style="width: 85%"></div>
                 </div>
@@ -434,7 +434,7 @@
                         
                         <div class="about-intro">
                             <p class="about-text">
-                                <p class="about-text"></p>
+                                <p class="about-text">
                                     Ingénieur passionné par les télécommunications et l'innovation technologique, je maîtrise l'ensemble de la chaîne RF : conception d'antennes et de systèmes émetteurs-récepteurs, modélisation de propagation radio, déploiement de réseaux 5G et faisceaux hertziens, caractérisation de systèmes RADAR. Cette expertise technique en hyperfréquences, combinée à une solide expérience en gestion de projets Agile et à mon double parcours académique (Master Photonique, Hyperfréquences et Systèmes de communications & Master Management des SI), me permet d'accompagner les projets télécoms avec une vision à la fois technique, opérationnelle et stratégique.
                                 </p>
                         </div>
@@ -529,27 +529,7 @@
             </div>
         </section>
     </main>
-    <script>
-document.querySelectorAll('.tab-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-        // Retirer la classe active de tous les boutons
-        document.querySelectorAll('.tab-btn').forEach(function(b) {
-            b.classList.remove('active');
-        });
-        // Ajouter la classe active au bouton cliqué
-        btn.classList.add('active');
-
-        // Masquer toutes les sections
-        document.querySelectorAll('.tab-content').forEach(function(tab) {
-            tab.classList.remove('active');
-        });
-        // Afficher la section liée au bouton cliqué
-        var tabId = btn.getAttribute('data-tab');
-        document.getElementById(tabId).classList.add('active');
-    });
-});
-</script>
-
+   
     <script src="script.js"></script>
 </body>
 </html>
