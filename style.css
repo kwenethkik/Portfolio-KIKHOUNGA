@@ -1199,7 +1199,7 @@
    }
    
    .tab-btn {
-       display: flex;
+       display: inline-flex !important
        align-items: center;
        gap: 0.5rem;
        padding: 1rem 2rem;
@@ -1211,6 +1211,9 @@
        cursor: pointer;
        transition: all var(--transition-normal);
        backdrop-filter: blur(10px);
+       visibility: visible !important;
+       opacity: 1 !important;
+   
    }
    
    .tab-btn:hover {
@@ -2728,6 +2731,7 @@
        .about-card:hover {
            background: rgb(255 255 255 / 100%) !important;
            border-color: var(--border-glow);
+   
        }
        
        /* Stat items - fix important */
@@ -2800,10 +2804,19 @@
        
        .tab-btn {
            background: rgb(255 255 255 / 90%) !important;
+           color: var(--text-secondary);
+           border: 2px solid var(--border-color);
        }
        
        .tab-btn:hover {
            background: rgb(255 255 255 / 100%) !important;
+           color: var(--cyan);
+           border-color: var(--border-glow);
+       }
+       .tab-btn.active {
+           background: linear-gradient(135deg, var(--cyan), var(--violet)) !important;
+           border-color: transparent !important;
+           color: white !important;
        }
        
        /* Header scrolled */
