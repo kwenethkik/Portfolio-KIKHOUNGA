@@ -4,7 +4,7 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Portfolio Kweneth - Tech Fusion initialisé');
+    console.log('Portfolio Kweneth - Tech Fusion initialisÃ©');
     
     // ==========================================
     // SMOOTH SCROLL NAVIGATION
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // HEADER SCROLL EFFECTS - CORRIGÃ‰
+    // HEADER SCROLL EFFECTS
     // ==========================================
     const header = document.querySelector('header');
 
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // BARRES DE PROGRESSION LANGUES - CORRIGÃ‰
+    // BARRES DE PROGRESSION LANGUES
     // ==========================================
     function animateLanguageBars() {
         const languageItems = document.querySelectorAll('.language-item');
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.isIntersecting) {
                     const progressBar = entry.target.querySelector('.language-progress');
                     if (progressBar) {
-                        // Animation avec dÃ©lai (la largeur est dÃ©jÃ  dÃ©finie en inline dans le HTML)
+                        // Animation avec dÃ©lai
                         setTimeout(() => {
                             progressBar.style.transition = 'width 1.5s ease-in-out';
                         }, 300);
@@ -116,22 +116,21 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadButtons.forEach(button => {
             button.addEventListener('click', function(e) {
                 
-                
                 // Animation de feedback
                 this.style.transform = 'scale(0.95)';
                 const originalHTML = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Téléchargement...';
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> TÃ©lÃ©chargement...';
 
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
-                    this.innerHTML = '<i class="fas fa-check"></i> Téléchargé !';
+                    this.innerHTML = '<i class="fas fa-check"></i> TÃ©lÃ©chargÃ© !';
 
                     setTimeout(() => {
                         this.innerHTML = originalHTML;
                     }, 2000);
                 }, 1500);
 
-                console.log('Téléchargement du CV de Kweneth KIKHOUNGA...');
+                console.log('TÃ©lÃ©chargement du CV de Kweneth KIKHOUNGA...');
             });
         });
     }
@@ -190,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     mainImage.style.transform = 'scale(0.95)';
                     
                     setTimeout(() => {
-                        // Échanger les sources
+                        // Ã‰changer les sources
                         const tempSrc = mainImage.src;
                         mainImage.src = thumbImg.src;
                         thumbImg.src = tempSrc;
@@ -199,16 +198,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         mainImage.style.opacity = '1';
                         mainImage.style.transform = 'scale(1)';
 
-                        console.log('✅ Images échangées');
+                        console.log('âœ… Images Ã©changÃ©es');
                     }, 300);
                 });
             });
             
             // Gestion des boutons de navigation
             if (navBtns.length === 2 && images.length > 1) {
-                // Bouton précédent
+                // Bouton prÃ©cÃ©dent
                 navBtns[0].addEventListener('click', () => {
-                    console.log('Navigation précédente');
+                    console.log('Navigation prÃ©cÃ©dente');
 
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     mainImage.style.opacity = '0';
@@ -444,9 +443,9 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.style.opacity = '0.7';
             submitBtn.disabled = true;
             
-            // Simuler l'envoi (remplacer par vraie logique)
+            // Simuler l'envoi
             setTimeout(() => {
-                submitBtn.textContent = 'Message envoyé !';
+                submitBtn.textContent = 'Message envoyÃ© !';
                 submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 
                 setTimeout(() => {
@@ -471,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const entries = list.getEntries();
                 entries.forEach(entry => {
                     if (entry.entryType === 'navigation') {
-                        console.log(`📄 Page chargée en ${Math.round(entry.loadEventEnd - entry.loadEventStart)}ms`);
+                        console.log(`ðŸ“„ Page chargÃ©e en ${Math.round(entry.loadEventEnd - entry.loadEventStart)}ms`);
                     }
                 });
             });
@@ -479,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 observer.observe({ entryTypes: ['navigation'] });
             } catch (error) {
-                console.log('Performance monitoring non supporté');
+                console.log('Performance monitoring non supportÃ©');
             }
         }
     }
@@ -487,7 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceMonitoring();
 
     // ==========================================
-    // EASTER EGG - KONAMI CODE - CORRIGÃ‰
+    // EASTER EGG - KONAMI CODE
     // ==========================================
     function initEasterEgg() {
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
@@ -506,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         function activateEasterEgg() {
-            console.log('🎮 Konami Code activ   é!');
+            console.log('ðŸŽ® Konami Code activÃ©!');
             document.body.style.animation = 'rainbow 2s ease infinite';
             
             setTimeout(() => {
@@ -717,7 +716,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     await navigator.clipboard.writeText(textToCopy);
                     
                     const originalText = this.textContent;
-                    this.textContent = '✅ Copié !';
+                    this.textContent = 'âœ… CopiÃ© !';
                     this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                     
                     setTimeout(() => {
@@ -847,7 +846,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // LOG FINAL
     // ==========================================
-    console.log('✅ Toutes les fonctionnalités initialisées avec succès');
+    console.log('âœ… Toutes les fonctionnalitÃ©s initialisÃ©es avec succÃ¨s');
 });
 
 // ==========================================
@@ -879,7 +878,7 @@ function throttle(func, delay) {
     };
 }
 
-// vérifier si un élément est visible
+// VÃ©rifier si un Ã©lÃ©ment est visible
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
     return (
@@ -934,14 +933,14 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 if (prefersReducedMotion.matches) {
     document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-    console.log('🛑 Mode accessibilité : animations réduites');
+    console.log('ðŸ›‘ Mode accessibilitÃ© : animations rÃ©duites');
 }
 
 // ==========================================
 // SERVICE WORKER (optionnel - PWA)
 // ==========================================
 if ('serviceWorker' in navigator) {
-    // Désactivé par défaut
+    // DÃ©sactivÃ© par dÃ©faut
     // navigator.serviceWorker.register('/sw.js');
 }
 
