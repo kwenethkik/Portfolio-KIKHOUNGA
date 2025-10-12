@@ -1103,23 +1103,97 @@
    }
    
    .nav-btn {
-       width: 60px;
-       height: 60px;
+       width: 60px !important;
+       height: 60px !important;
+       background: linear-gradient(135deg, var(--cyan), var(--violet)) !important;
+       color: white !important;
+       border-radius: 50% !important;
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       cursor: pointer !important;
+       transition: all var(--transition-normal) !important;
+       border: 3px solid white !important;
+       box-shadow: 0 8px 24px rgb(6 182 212 / 40%) !important;
+       font-size: 1.5rem !important;
+       position: relative !important;
+   }
+   
+   .nav-btn::before {
+       content: '';
+       position: absolute;
+       inset: -3px;
        background: linear-gradient(135deg, var(--cyan), var(--violet));
-       color: white;
        border-radius: 50%;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       cursor: pointer;
-       transition: all var(--transition-normal);
-       border: none;
-       box-shadow: var(--shadow-sm);
+       z-index: -1;
+       opacity: 0;
+       transition: opacity var(--transition-normal);
    }
    
    .nav-btn:hover {
-       transform: scale(1.15);
-       box-shadow: var(--shadow-md);
+       transform: scale(1.2) !important;
+       box-shadow: 0 0 40px rgb(6 182 212 / 60%) !important;
+       border-color: var(--cyan) !important;
+   }
+   
+   .nav-btn:hover::before {
+       opacity: 0.5;
+   }
+   
+   .nav-btn:active {
+       transform: scale(1.1) !important;
+   }
+   
+   .nav-btn i {
+       font-size: 1.5rem;
+       color: white;
+   }
+   
+   /* Ajouter un effet de pulsation pour attirer l'attention */
+   @keyframes pulse-nav {
+       0%, 100% {
+           box-shadow: 0 8px 24px rgb(6 182 212 / 40%);
+       }
+       50% {
+           box-shadow: 0 0 40px rgb(6 182 212 / 60%);
+       }
+   }
+   
+   .nav-btn {
+       animation: pulse-nav 2s ease-in-out infinite;
+   }
+   
+   .nav-btn:hover {
+       animation: none;
+   }
+   
+   /* Amélioration responsive des boutons de navigation */
+   @media (max-width: 768px) {
+       .nav-btn {
+           width: 50px !important;
+           height: 50px !important;
+           font-size: 1.25rem !important;
+       }
+       
+       .nav-btn i {
+           font-size: 1.25rem;
+       }
+   }
+   
+   /* Mode clair - ajustements */
+   @media (prefers-color-scheme: light) {
+       .nav-btn {
+           border-color: rgb(0 0 0 /10%) !important;
+           box-shadow: 0 8px 24px rgb(0 0 0 /15%) !important;
+       }
+       
+       .nav-btn:hover {
+           box-shadow: 0 12px 32px rgb(8 145 178 /30%) !important;
+       }
+   
+       .scroll-to-top {
+           border: 2px solid rgb(0 0 0 /10%) !important;
+       }
    }
    
    /* ==========================================
@@ -2233,6 +2307,53 @@
    }
    
    /* ==========================================
+      SCROLL TO TOP BUTTON - À ajouter à la fin de style.css
+      ========================================== */
+   
+   .scroll-to-top {
+       position: fixed;
+       bottom: 2rem;
+       right: 2rem;
+       width: 60px;
+       height: 60px;
+       background: linear-gradient(135deg, var(--cyan), var(--violet));
+       color: white;
+       border: none;
+       border-radius: 50%;
+       cursor: pointer;
+       opacity: 0;
+       visibility: hidden;
+       transition: all 0.3s ease;
+       z-index: 999;
+       box-shadow: var(--shadow-md);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 1.5rem;
+   }
+   
+   .scroll-to-top:hover {
+       transform: translateY(-5px) scale(1.1);
+       box-shadow: var(--shadow-lg);
+   }
+   
+   .scroll-to-top.visible {
+       opacity: 1;
+       visibility: visible;
+   }
+   
+   /* Responsive scroll to top */
+   @media (max-width: 768px) {
+       .scroll-to-top {
+           width: 50px;
+           height: 50px;
+           bottom: 1.5rem;
+           right: 1.5rem;
+           font-size: 1.25rem;
+       }
+   }
+   
+   /* ==========================================
       RESPONSIVE DESIGN
       ========================================== */
    
@@ -2565,7 +2686,10 @@
       RESPONSIVE DESIGN - MOBILE
       ========================================== */
    
-   /* Menu hamburger - caché par défaut sur desktop */
+   /* ==========================================
+      MENU MOBILE FULL-SCREEN STYLE JANCY
+      ========================================== */
+   
    .mobile-menu-toggle {
        display: none;
        flex-direction: column;
@@ -2574,7 +2698,8 @@
        border: none;
        cursor: pointer;
        padding: 0.5rem;
-       z-index: 1001;
+       z-index: 2001;
+       position: relative;
    }
    
    .mobile-menu-toggle span {
@@ -2585,246 +2710,163 @@
        transition: all 0.3s ease;
    }
    
-   /* Pour Font Awesome icon dans le bouton */
+   /* Icône Font Awesome */
    .mobile-menu-toggle i {
        color: var(--cyan);
-       font-size: 1.5rem;
+       font-size: 1.75rem;
+       transition: all 0.3s ease;
    }
    
-   /* MEDIA QUERIES POUR MOBILE */
+   /* Animation du bouton hamburger → X */
+   .mobile-menu-toggle.active i.fa-bars {
+       display: none;
+   }
+   
+   .mobile-menu-toggle.active i.fa-times {
+       display: block;
+   }
+   
+   .mobile-menu-toggle i.fa-times {
+       display: none;
+   }
+   
+   /* Menu mobile FULL-SCREEN */
+   .nav-links {
+       display: flex;
+       list-style: none;
+       gap: 3rem;
+       align-items: center;
+   }
+   
    @media (max-width: 768px) {
        
-       /* Afficher le bouton hamburger sur mobile */
+       /* Afficher le bouton hamburger */
        .mobile-menu-toggle {
-           display: flex;
+           display: block;
        }
        
-       /* Cacher le menu par défaut sur mobile */
+       /* Menu caché par défaut */
        .nav-links {
            position: fixed;
            top: 0;
-           right: -100%;
-           width: 70%;
+           left: 0;
+           width: 100vw;
            height: 100vh;
-           background: rgb(2 6 23 / 98%);
-           backdrop-filter: blur(10px);
+           background: rgba(2, 6, 23, 0.98);
+           backdrop-filter: blur(20px);
+           
+           /* Centrer le contenu */
+           display: flex;
            flex-direction: column;
            justify-content: center;
            align-items: center;
-           gap: 2rem;
-           padding: 2rem;
-           transition: right 0.4s ease;
-           z-index: 1000;
-           border-left: 1px solid var(--border-glow);
+           gap: 3rem;
+           
+           /* Animation */
+           opacity: 0;
+           visibility: hidden;
+           transform: scale(0.95);
+           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+           
+           z-index: 2000;
+           padding: 4rem 2rem;
        }
        
        /* Menu ouvert */
        .nav-links.mobile-open {
-           right: 0;
+           opacity: 1;
+           visibility: visible;
+           transform: scale(1);
        }
        
-       /* Animation du bouton hamburger quand le menu est ouvert */
-       .mobile-menu-toggle.active span:nth-child(1) {
-           transform: rotate(45deg) translate(8px, 8px);
-       }
-       
-       .mobile-menu-toggle.active span:nth-child(2) {
-           opacity: 0;
-       }
-       
-       .mobile-menu-toggle.active span:nth-child(3) {
-           transform: rotate(-45deg) translate(7px, -7px);
-       }
-       
-       /* Liens du menu sur mobile */
+       /* Style des liens */
        .nav-links li {
-           width: 100%;
+           width: auto;
            text-align: center;
+           opacity: 0;
+           transform: translateY(20px);
+           animation: fadeInUp 0.5s ease forwards;
+       }
+       
+       .nav-links.mobile-open li:nth-child(1) { animation-delay: 0.1s; }
+       .nav-links.mobile-open li:nth-child(2) { animation-delay: 0.2s; }
+       .nav-links.mobile-open li:nth-child(3) { animation-delay: 0.3s; }
+       .nav-links.mobile-open li:nth-child(4) { animation-delay: 0.4s; }
+       .nav-links.mobile-open li:nth-child(5) { animation-delay: 0.5s; }
+       
+       @keyframes fadeInUp {
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
        }
        
        .nav-links a {
            display: block;
-           padding: 1rem;
-           font-size: 1.2rem;
-       }
-       
-       /* Bouton CTA sur mobile */
-       .cta-button {
-           width: 80%;
-           text-align: center;
-       }
-       
-       /* Navigation tabs CV sur mobile */
-       .nav-tabs {
-           flex-wrap: wrap;
-           gap: 0.5rem;
-           padding: 0 1rem;
-       }
-       
-       .tab-btn {
-           flex: 1 1 45%;
-           min-width: 120px;
-           font-size: 0.9rem;
-           padding: 0.75rem 1rem;
-       }
-       
-       .tab-btn i {
-           font-size: 1rem;
-       }
-       
-       /* Hero section sur mobile */
-       .hero {
-           padding: 6rem 1rem 4rem;
-       }
-       
-       .hero-content {
-           grid-template-columns: 1fr;
-           text-align: center;
-       }
-       
-       .main-title {
+           padding: 1rem 2rem;
            font-size: 2rem;
+           font-weight: 700;
+           color: var(--text-secondary);
+           text-decoration: none;
+           position: relative;
+           transition: all 0.3s ease;
        }
        
-       .hero-subtitle {
-           font-size: 1rem;
+       .nav-links a:hover,
+       .nav-links a.active {
+           color: var(--cyan);
+           transform: translateX(10px);
        }
        
-       .hero-description {
-           font-size: 1rem;
-       }
-       
-       .skills-grid {
-           grid-template-columns: 1fr;
-       }
-       
-       .hero-image {
-           max-width: 300px;
-           margin: 0 auto;
-       }
-       
-       /* Stats */
-       .stats-grid {
-           grid-template-columns: repeat(2, 1fr);
-           gap: 1rem;
-       }
-       
-       /* Grilles sur mobile */
-       .formation-grid,
-       .languages-grid,
-       .about-grid {
-           grid-template-columns: 1fr;
-       }
-       
-       /* Boutons de téléchargement CV */
-       .cv-download-buttons {
-           flex-direction: column;
-           gap: 1rem;
-           padding: 0 1rem;
-       }
-       
-       .cv-download-btn {
-           width: 100%;
-           justify-content: center;
-           font-size: 0.9rem;
-           padding: 0.9rem 1.5rem;
-       }
-       
-       /* Cartes projet sur mobile */
-       .projects-grid {
-           grid-template-columns: 1fr;
-       }
-       
-       .project-card {
-           grid-template-columns: 1fr;
-           padding: 2rem 1rem;
-       }
-       
-       /* Timeline sur mobile */
-       .timeline::before {
-           left: 2rem;
-       }
-       
-       .timeline-item:nth-child(odd) .timeline-content,
-       .timeline-item:nth-child(even) .timeline-content {
-           margin: 0 0 0 4rem;
-       }
-       
-       .timeline-dot {
-           left: 2rem;
+       /* Soulignement animé */
+       .nav-links a::after {
+           content: '';
+           position: absolute;
+           bottom: 0;
+           left: 50%;
            transform: translateX(-50%);
+           width: 0;
+           height: 3px;
+           background: var(--cyan);
+           transition: width 0.3s ease;
        }
        
-       .timeline-date {
-           position: static !important;
-           margin-bottom: 1rem;
+       .nav-links a:hover::after,
+       .nav-links a.active::after {
+           width: 60%;
        }
        
-       /* Contact layout */
-       .contact-layout {
-           grid-template-columns: 1fr;
-       }
-       
-       .availability-section {
-           grid-template-columns: 1fr;
-       }
-   }
-   
-   /* Tablettes (768px à 1024px) */
-   @media (min-width: 769px) and (max-width: 1024px) {
-       .projects-grid {
-           grid-template-columns: repeat(2, 1fr);
-       }
-       
-       .formation-grid {
-           grid-template-columns: repeat(2, 1fr);
-       }
-       
-       .stats-grid {
-           grid-template-columns: repeat(2, 1fr);
-       }
-   }
-   
-   /* Très petits écrans (moins de 480px) */
-   @media (max-width: 480px) {
-       .main-title {
+       /* Bouton CTA dans le menu */
+       .cta-button {
+           width: auto;
+           padding: 1.25rem 3rem;
            font-size: 1.5rem;
+           text-align: center;
+           margin-top: 2rem;
        }
        
-       .hero-subtitle {
-           font-size: 0.9rem;
-           padding: 0.6rem 1rem;
-       }
-       
-       .tab-btn {
-           font-size: 0.85rem;
-           padding: 0.6rem 0.8rem;
-           flex: 1 1 100%;
-       }
-       
-       .skill-tag {
-           font-size: 0.75rem;
-           padding: 0.4rem 0.8rem;
-       }
-       
-       .stats-grid {
-           grid-template-columns: 1fr;
-       }
-       
-       .cv-download-btn {
-           font-size: 0.85rem;
+       /* Fermeture au clic sur le fond */
+       .nav-links.mobile-open::before {
+           content: '';
+           position: absolute;
+           inset: 0;
+           background: rgba(0, 0, 0, 0.5);
+           z-index: -1;
        }
    }
    
-   /* Mode clair - ajustements mobile */
+   /* Mode clair */
    @media (prefers-color-scheme: light) {
        @media (max-width: 768px) {
-           .nav-links.mobile-open {
-               background: rgb(248 250 252 / 98%) !important;
+           .nav-links {
+               background: rgba(248, 250, 252, 0.98) !important;
+           }
+           
+           .nav-links a {
+               color: var(--text-primary);
            }
        }
    }
-   
    /* ==========================================
       TOOLTIPS
       ========================================== */
@@ -2952,8 +2994,8 @@
       ========================================== */
    
    @media (prefers-color-scheme: light) {
-       /* Corrections spÃ©cifiques pour les Ã©lÃ©ments qui deviennent noirs au hover */
-       
+       /* Corrections spécifiques pour les éléments qui deviennent noirs au hover */
+   
        /* Cards et conteneurs */
        .skill-card:hover,
        .stat-item:hover,

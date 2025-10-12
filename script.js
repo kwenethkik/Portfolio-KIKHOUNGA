@@ -140,109 +140,153 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // PROJECT GALLERY INTERACTION
     // ==========================================
-    function initProjectGallery() {
-        console.log('Initialisation de la galerie projets...');
+   function initProjectGalleryEnhanced() {
+    console.log(' Initialisation améliorée de la galerie projets...');
+
+    const projectCards = document.querySelectorAll('.project-card');
+    console.log(`Nombre de cartes projet: ${projectCards.length}`);
+    
+    projectCards.forEach((card, cardIndex) => {
+        const mainImage = card.querySelector('.main-image img');
+        const thumbnails = card.querySelectorAll('.thumbnail');
+        const navBtns = card.querySelectorAll('.nav-btn');
         
-        const projectCards = document.querySelectorAll('.project-card');
-        console.log(`Nombre de cartes projet: ${projectCards.length}`);
+        if (!mainImage) {
+            console.warn('Pas d\'image principale dans carte', cardIndex);
+            return;
+        }
+
+        // S'assurer que les boutons ont les icônes Font Awesome
+        if (navBtns.length === 2) {
+            navBtns[0].innerHTML = '<i class="fas fa-chevron-left"></i>';
+            navBtns[1].innerHTML = '<i class="fas fa-chevron-right"></i>';
+        }
         
-        projectCards.forEach((card, cardIndex) => {
-            const mainImage = card.querySelector('.main-image img');
-            const thumbnails = card.querySelectorAll('.thumbnail');
-            const navBtns = card.querySelectorAll('.nav-btn');
+        // Collecter toutes les images valides
+        let images = [mainImage.src];
+        
+        thumbnails.forEach(thumb => {
+            const thumbImg = thumb.querySelector('img');
+            if (thumbImg && thumbImg.src && thumbImg.src !== '' && thumbImg.src !== window.location.href) {
+                images.push(thumbImg.src);
+            }
+        });
+        
+        console.log(`ðŸ“¦ Carte ${cardIndex + 1}: ${images.length} images`);
+        
+        let currentIndex = 0;
+        
+        // Gestion des clics sur thumbnails avec animation amÃ©liorÃ©e
+        thumbnails.forEach((thumb, thumbIndex) => {
+            const thumbImg = thumb.querySelector('img');
             
-            if (!mainImage) {
-                console.warn('Pas d\'image principale dans carte', cardIndex);
+            if (!thumbImg || !thumbImg.src || thumbImg.src === '' || thumbImg.src === window.location.href) {
+                thumb.style.opacity = '0.3';
+                thumb.style.cursor = 'not-allowed';
                 return;
             }
             
-            // Collecter toutes les images valides
-            let images = [mainImage.src];
-            
-            thumbnails.forEach(thumb => {
-                const thumbImg = thumb.querySelector('img');
-                if (thumbImg && thumbImg.src && thumbImg.src !== '' && thumbImg.src !== window.location.href) {
-                    images.push(thumbImg.src);
-                }
+            thumb.addEventListener('click', function() {
+                console.log(`ðŸ–±ï¸ Clic sur thumbnail ${thumbIndex + 1}`);
+                
+                // Animation de l'image principale
+                mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                mainImage.style.opacity = '0';
+                mainImage.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    // Échanger les sources
+                    const tempSrc = mainImage.src;
+                    mainImage.src = thumbImg.src;
+                    thumbImg.src = tempSrc;
+                    
+                    // Restaurer l'animation
+                    mainImage.style.opacity = '1';
+                    mainImage.style.transform = 'scale(1)';
+
+                    console.log('✅ Images échangées');
+                }, 300);
             });
-            
-            console.log(`ðŸ“¦ Carte ${cardIndex + 1}: ${images.length} images`);
-            
-            let currentIndex = 0;
-            
-            // Gestion des clics sur thumbnails avec animation
-            thumbnails.forEach((thumb, thumbIndex) => {
-                const thumbImg = thumb.querySelector('img');
-                
-                if (!thumbImg || !thumbImg.src || thumbImg.src === '' || thumbImg.src === window.location.href) {
-                    thumb.style.opacity = '0.3';
-                    thumb.style.cursor = 'not-allowed';
-                    return;
-                }
-                
-                thumb.addEventListener('click', function() {
-                    console.log(`Clic sur thumbnail ${thumbIndex + 1}`);
-                    
-                    // Animation de l'image principale
-                    mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    mainImage.style.opacity = '0';
-                    mainImage.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        // Ã‰changer les sources
-                        const tempSrc = mainImage.src;
-                        mainImage.src = thumbImg.src;
-                        thumbImg.src = tempSrc;
-                        
-                        // Restaurer l'animation
-                        mainImage.style.opacity = '1';
-                        mainImage.style.transform = 'scale(1)';
-
-                        console.log('âœ… Images Ã©changÃ©es');
-                    }, 300);
-                });
-            });
-            
-            // Gestion des boutons de navigation
-            if (navBtns.length === 2 && images.length > 1) {
-                // Bouton prÃ©cÃ©dent
-                navBtns[0].addEventListener('click', () => {
-                    console.log('Navigation prÃ©cÃ©dente');
-
-                    mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    mainImage.style.opacity = '0';
-                    mainImage.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        currentIndex = (currentIndex - 1 + images.length) % images.length;
-                        mainImage.src = images[currentIndex];
-                        
-                        mainImage.style.opacity = '1';
-                        mainImage.style.transform = 'scale(1)';
-                    }, 300);
-                });
-                
-                // Bouton suivant
-                navBtns[1].addEventListener('click', () => {
-                    console.log('Navigation suivante');
-
-                    mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    mainImage.style.opacity = '0';
-                    mainImage.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        currentIndex = (currentIndex + 1) % images.length;
-                        mainImage.src = images[currentIndex];
-                        
-                        mainImage.style.opacity = '1';
-                        mainImage.style.transform = 'scale(1)';
-                    }, 300);
-                });
-            }
         });
-    }
 
-    initProjectGallery();
+        // Gestion améliorée des boutons de navigation
+        if (navBtns.length === 2 && images.length > 1) {
+            // Bouton précédent
+            navBtns[0].addEventListener('click', () => {
+                console.log('◀️ Navigation précédente');
+
+                // Effet visuel sur le bouton
+                navBtns[0].style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    navBtns[0].style.transform = '';
+                }, 150);
+                
+                mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                mainImage.style.opacity = '0';
+                mainImage.style.transform = 'scale(0.95) translateX(20px)';
+                
+                setTimeout(() => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    mainImage.src = images[currentIndex];
+                    
+                    mainImage.style.opacity = '1';
+                    mainImage.style.transform = 'scale(1) translateX(0)';
+                }, 300);
+            });
+            
+            // Bouton suivant
+            navBtns[1].addEventListener('click', () => {
+                console.log('➡️ Navigation suivante');
+
+                // Effet visuel sur le bouton
+                navBtns[1].style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    navBtns[1].style.transform = '';
+                }, 150);
+                
+                mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                mainImage.style.opacity = '0';
+                mainImage.style.transform = 'scale(0.95) translateX(-20px)';
+                
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    mainImage.src = images[currentIndex];
+                    
+                    mainImage.style.opacity = '1';
+                    mainImage.style.transform = 'scale(1) translateX(0)';
+                }, 300);
+            });
+            
+            // Support du clavier
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    navBtns[0].click();
+                } else if (e.key === 'ArrowRight') {
+                    navBtns[1].click();
+                }
+            });
+        }
+    });
+
+    console.log('✅ Galerie projets améliorée initialisée');
+}
+
+// ==========================================
+// Initialiser au chargement de la page
+// ==========================================
+
+// Remplacer les anciennes fonctions dans script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialiser le bouton scroll-to-top sur toutes les pages
+    initScrollToTop();
+    
+    // Initialiser la galerie amÃ©liorÃ©e si on est sur la page projets
+    if (document.querySelector('.projects-grid')) {
+        initProjectGalleryEnhanced();
+    }
+});
+
+console.log('ðŸš€ AmÃ©liorations chargÃ©es : Scroll-to-top + Navigation projets');
 
     // ==========================================
     // GESTION DES ONGLETS CV
@@ -296,45 +340,79 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // MOBILE MENU TOGGLE
     // ==========================================
-    function initMobileMenu() {
-        const nav = document.querySelector('nav');
-        const navLinks = document.querySelector('.nav-links');
+    // ==========================================
+// MOBILE MENU FULL-SCREEN (Style Jancy)
+// ==========================================
+function initMobileMenu() {
+    const nav = document.querySelector('nav');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (!nav || !navLinks) return;
+    
+    // Créer le bouton mobile s'il n'existe pas
+    let mobileToggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (!mobileToggle) {
+        mobileToggle = document.createElement('button');
+        mobileToggle.className = 'mobile-menu-toggle';
+        mobileToggle.innerHTML = `
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        `;
+        mobileToggle.setAttribute('aria-label', 'Toggle mobile menu');
         
-        if (!nav || !navLinks) return;
-        
-        // CrÃ©er le bouton mobile s'il n'existe pas
-        let mobileToggle = document.querySelector('.mobile-menu-toggle');
-        
-        if (!mobileToggle) {
-            mobileToggle = document.createElement('button');
-            mobileToggle.className = 'mobile-menu-toggle';
-            mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            mobileToggle.setAttribute('aria-label', 'Toggle mobile menu');
+        // Insérer le bouton dans la navigation
+        const navRight = nav.querySelector('.nav-right');
+        if (navRight) {
+            navRight.appendChild(mobileToggle);
+        } else {
             nav.appendChild(mobileToggle);
         }
-        
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('mobile-open');
-            const icon = mobileToggle.querySelector('i');
-            
-            if (navLinks.classList.contains('mobile-open')) {
-                icon.className = 'fas fa-times';
-            } else {
-                icon.className = 'fas fa-bars';
-            }
-        });
-        
-        // Fermer le menu mobile au clic sur un lien
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('mobile-open');
-                const icon = mobileToggle.querySelector('i');
-                icon.className = 'fas fa-bars';
-            });
-        });
     }
-
-    initMobileMenu();
+    
+    // Toggle du menu
+    mobileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('mobile-open');
+        mobileToggle.classList.toggle('active');
+        
+        // Bloquer le scroll du body quand le menu est ouvert
+        if (navLinks.classList.contains('mobile-open')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Fermer le menu au clic sur un lien
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('mobile-open');
+            mobileToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Fermer au clic en dehors du menu
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('mobile-open')) {
+            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+    
+    // Fermer avec la touche Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+            navLinks.classList.remove('mobile-open');
+            mobileToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
 
     // ==========================================
     // ACTIVE NAVIGATION HIGHLIGHTING
@@ -584,54 +662,67 @@ document.addEventListener('DOMContentLoaded', function() {
     initStatsCounter();
 
     // ==========================================
-    // SCROLL TO TOP BUTTON
-    // ==========================================
-    function initScrollToTop() {
-        // CrÃ©er le bouton
-        const scrollBtn = document.createElement('button');
+// AMeLIORATION : SCROLL TO TOP sur toutes les pages
+// ==========================================
+
+// Cette fonction remplace l'ancienne fonction initScrollToTop() dans script.js
+function initScrollToTop() {
+    // Vérifier si le bouton existe déjà
+    let scrollBtn = document.querySelector('.scroll-to-top');
+
+    // Créer le bouton s'il n'existe pas
+    if (!scrollBtn) {
+        scrollBtn = document.createElement('button');
         scrollBtn.className = 'scroll-to-top';
         scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        scrollBtn.style.cssText = `
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--cyan), var(--violet));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: var(--shadow-md);
-        `;
-        
+        scrollBtn.setAttribute('aria-label', 'Retour en haut de page');
         document.body.appendChild(scrollBtn);
-        
-        // Afficher/masquer selon le scroll
-        window.addEventListener('scroll', debounce(() => {
-            if (window.pageYOffset > 500) {
-                scrollBtn.style.opacity = '1';
-                scrollBtn.style.visibility = 'visible';
-            } else {
-                scrollBtn.style.opacity = '0';
-                scrollBtn.style.visibility = 'hidden';
-            }
-        }, 100));
-        
-        // Action au clic
-        scrollBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+    }
+    
+    // Afficher/masquer selon le scroll avec classe 'visible'
+    function toggleScrollButton() {
+        if (window.pageYOffset > 500) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
     }
 
-    initScrollToTop();
+    // Événement au scroll
+    window.addEventListener('scroll', debounce(toggleScrollButton, 100));
+
+    // Vérifier au chargement
+    toggleScrollButton();
+    
+    // Action au clic
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        // Animation de feedback
+        scrollBtn.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            scrollBtn.style.transform = '';
+        }, 150);
+    });
+    
+    console.log('âœ… Bouton scroll-to-top initialisÃ©');
+}
+
+// S'assurer que la fonction debounce existe
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
 
     // ==========================================
     // PROGRESS BAR AU SCROLL
