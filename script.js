@@ -4,7 +4,7 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('ðŸš€ Portfolio Kweneth - Tech Fusion initialisÃ©');
+    console.log('Portfolio Kweneth - Tech Fusion initialisé');
     
     // ==========================================
     // SMOOTH SCROLL NAVIGATION
@@ -115,24 +115,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         downloadButtons.forEach(button => {
             button.addEventListener('click', function(e) {
-                e.preventDefault();
+                
                 
                 // Animation de feedback
                 this.style.transform = 'scale(0.95)';
-                
                 const originalHTML = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> TÃ©lÃ©chargement...';
-                
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Téléchargement...';
+
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
-                    this.innerHTML = '<i class="fas fa-check"></i> TÃ©lÃ©chargÃ© !';
-                    
+                    this.innerHTML = '<i class="fas fa-check"></i> Téléchargé !';
+
                     setTimeout(() => {
                         this.innerHTML = originalHTML;
                     }, 2000);
                 }, 1500);
-                
-                console.log('TÃ©lÃ©chargement du CV de Kweneth KIKHOUNGA...');
+
+                console.log('Téléchargement du CV de Kweneth KIKHOUNGA...');
             });
         });
     }
@@ -143,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // PROJECT GALLERY INTERACTION
     // ==========================================
     function initProjectGallery() {
-        console.log('ðŸŽ¬ Initialisation de la galerie projets...');
+        console.log('Initialisation de la galerie projets...');
         
         const projectCards = document.querySelectorAll('.project-card');
         console.log(`Nombre de cartes projet: ${projectCards.length}`);
@@ -154,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const navBtns = card.querySelectorAll('.nav-btn');
             
             if (!mainImage) {
-                console.warn('âš ï¸ Pas d\'image principale dans carte', cardIndex);
+                console.warn('Pas d\'image principale dans carte', cardIndex);
                 return;
             }
             
@@ -183,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 thumb.addEventListener('click', function() {
-                    console.log(`ðŸ–±ï¸ Clic sur thumbnail ${thumbIndex + 1}`);
+                    console.log(`Clic sur thumbnail ${thumbIndex + 1}`);
                     
                     // Animation de l'image principale
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
@@ -191,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     mainImage.style.transform = 'scale(0.95)';
                     
                     setTimeout(() => {
-                        // Ã‰changer les sources
+                        // Échanger les sources
                         const tempSrc = mainImage.src;
                         mainImage.src = thumbImg.src;
                         thumbImg.src = tempSrc;
@@ -199,18 +198,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Restaurer l'animation
                         mainImage.style.opacity = '1';
                         mainImage.style.transform = 'scale(1)';
-                        
-                        console.log('âœ… Images Ã©changÃ©es');
+
+                        console.log('✅ Images échangées');
                     }, 300);
                 });
             });
             
             // Gestion des boutons de navigation
             if (navBtns.length === 2 && images.length > 1) {
-                // Bouton prÃ©cÃ©dent
+                // Bouton précédent
                 navBtns[0].addEventListener('click', () => {
-                    console.log('â¬…ï¸ Navigation prÃ©cÃ©dente');
-                    
+                    console.log('Navigation précédente');
+
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     mainImage.style.opacity = '0';
                     mainImage.style.transform = 'scale(0.95)';
@@ -226,8 +225,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Bouton suivant
                 navBtns[1].addEventListener('click', () => {
-                    console.log('âž¡ï¸ Navigation suivante');
-                    
+                    console.log('Navigation suivante');
+
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     mainImage.style.opacity = '0';
                     mainImage.style.transform = 'scale(0.95)';
@@ -447,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simuler l'envoi (remplacer par vraie logique)
             setTimeout(() => {
-                submitBtn.textContent = 'âœ“ Message envoyÃ© !';
+                submitBtn.textContent = 'Message envoyé !';
                 submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 
                 setTimeout(() => {
@@ -472,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const entries = list.getEntries();
                 entries.forEach(entry => {
                     if (entry.entryType === 'navigation') {
-                        console.log(`âš¡ Page chargÃ©e en ${Math.round(entry.loadEventEnd - entry.loadEventStart)}ms`);
+                        console.log(`📄 Page chargée en ${Math.round(entry.loadEventEnd - entry.loadEventStart)}ms`);
                     }
                 });
             });
@@ -480,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 observer.observe({ entryTypes: ['navigation'] });
             } catch (error) {
-                console.log('Performance monitoring non supportÃ©');
+                console.log('Performance monitoring non supporté');
             }
         }
     }
@@ -507,7 +506,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         function activateEasterEgg() {
-            console.log('ðŸŽ® Konami Code activÃ©!');
+            console.log('🎮 Konami Code activ   é!');
             document.body.style.animation = 'rainbow 2s ease infinite';
             
             setTimeout(() => {
@@ -718,7 +717,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     await navigator.clipboard.writeText(textToCopy);
                     
                     const originalText = this.textContent;
-                    this.textContent = 'âœ“ CopiÃ© !';
+                    this.textContent = '✅ Copié !';
                     this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                     
                     setTimeout(() => {
@@ -848,7 +847,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // LOG FINAL
     // ==========================================
-    console.log('âœ… Toutes les fonctionnalitÃ©s initialisÃ©es avec succÃ¨s');
+    console.log('✅ Toutes les fonctionnalités initialisées avec succès');
 });
 
 // ==========================================
@@ -880,7 +879,7 @@ function throttle(func, delay) {
     };
 }
 
-// VÃ©rifier si un Ã©lÃ©ment est visible
+// vérifier si un élément est visible
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
     return (
@@ -935,14 +934,14 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 if (prefersReducedMotion.matches) {
     document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-    console.log('â™¿ Mode accessibilitÃ© : animations rÃ©duites');
+    console.log('🛑 Mode accessibilité : animations réduites');
 }
 
 // ==========================================
 // SERVICE WORKER (optionnel - PWA)
 // ==========================================
 if ('serviceWorker' in navigator) {
-    // DÃ©sactivÃ© par dÃ©faut
+    // Désactivé par défaut
     // navigator.serviceWorker.register('/sw.js');
 }
 
