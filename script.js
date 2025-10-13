@@ -119,11 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Animation de feedback
                 this.style.transform = 'scale(0.95)';
                 const originalHTML = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> TÃ©lÃ©chargement...';
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Téléchargement...';
 
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
-                    this.innerHTML = '<i class="fas fa-check"></i> TÃ©lÃ©chargÃ© !';
+                    this.innerHTML = '<i class="fas fa-check"></i> Téléchargé !';
 
                     setTimeout(() => {
                         this.innerHTML = originalHTML;
