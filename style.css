@@ -324,6 +324,22 @@
        display: flex;
        justify-content: space-between;
        align-items: center;
+       gap: 1rem;
+   }
+   /* Sur mobile, placer le hamburger bien à droite */
+   @media (max-width: 768px) {
+       nav {
+           justify-content: space-between;
+       }
+       
+       .mobile-menu-toggle {
+           order: 2; /* Place le bouton après le logo (à droite) */
+           margin-left: auto; /* Pousse le bouton complètement à droite */
+       }
+       
+       .logo {
+           order: 1; /* Logo reste à gauche */
+       }
    }
    
    .logo {
@@ -1102,6 +1118,9 @@
        margin-top: 2rem;
    }
    
+   /* ==========================================
+      BOUTONS DE NAVIGATION FLOTANTS
+      ========================================== */
    .nav-btn {
        width: 60px !important;
        height: 60px !important;
@@ -1114,7 +1133,7 @@
        cursor: pointer !important;
        transition: all var(--transition-normal) !important;
        border: 3px solid white !important;
-       box-shadow: 0 8px 24px rgb(6 182 212 / 40%) !important;
+       box-shadow: 0 8px 24px rgba(6, 182, 212, 0.4) !important;
        font-size: 1.5rem !important;
        position: relative !important;
    }
@@ -1132,7 +1151,7 @@
    
    .nav-btn:hover {
        transform: scale(1.2) !important;
-       box-shadow: 0 0 40px rgb(6 182 212 / 60%) !important;
+       box-shadow: 0 0 40px rgba(6, 182, 212, 0.6) !important;
        border-color: var(--cyan) !important;
    }
    
@@ -1149,13 +1168,12 @@
        color: white;
    }
    
-   /* Ajouter un effet de pulsation pour attirer l'attention */
    @keyframes pulse-nav {
        0%, 100% {
-           box-shadow: 0 8px 24px rgb(6 182 212 / 40%);
+           box-shadow: 0 8px 24px rgba(6, 182, 212, 0.4);
        }
        50% {
-           box-shadow: 0 0 40px rgb(6 182 212 / 60%);
+           box-shadow: 0 0 40px rgba(6, 182, 212, 0.6);
        }
    }
    
@@ -1167,7 +1185,6 @@
        animation: none;
    }
    
-   /* Amélioration responsive des boutons de navigation */
    @media (max-width: 768px) {
        .nav-btn {
            width: 50px !important;
@@ -1180,19 +1197,18 @@
        }
    }
    
-   /* Mode clair - ajustements */
    @media (prefers-color-scheme: light) {
        .nav-btn {
-           border-color: rgb(0 0 0 /10%) !important;
-           box-shadow: 0 8px 24px rgb(0 0 0 /15%) !important;
+           border-color: rgba(0, 0, 0, 0.1) !important;
+           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
        }
        
        .nav-btn:hover {
-           box-shadow: 0 12px 32px rgb(8 145 178 /30%) !important;
+           box-shadow: 0 12px 32px rgba(8, 145, 178, 0.3) !important;
        }
-   
+       
        .scroll-to-top {
-           border: 2px solid rgb(0 0 0 /10%) !important;
+           border: 2px solid rgba(0, 0, 0, 0.1);
        }
    }
    
@@ -2306,52 +2322,7 @@
        line-height: 1.7;
    }
    
-   /* ==========================================
-      SCROLL TO TOP BUTTON - À ajouter à la fin de style.css
-      ========================================== */
    
-   .scroll-to-top {
-       position: fixed;
-       bottom: 2rem;
-       right: 2rem;
-       width: 60px;
-       height: 60px;
-       background: linear-gradient(135deg, var(--cyan), var(--violet));
-       color: white;
-       border: none;
-       border-radius: 50%;
-       cursor: pointer;
-       opacity: 0;
-       visibility: hidden;
-       transition: all 0.3s ease;
-       z-index: 999;
-       box-shadow: var(--shadow-md);
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       font-size: 1.5rem;
-   }
-   
-   .scroll-to-top:hover {
-       transform: translateY(-5px) scale(1.1);
-       box-shadow: var(--shadow-lg);
-   }
-   
-   .scroll-to-top.visible {
-       opacity: 1;
-       visibility: visible;
-   }
-   
-   /* Responsive scroll to top */
-   @media (max-width: 768px) {
-       .scroll-to-top {
-           width: 50px;
-           height: 50px;
-           bottom: 1.5rem;
-           right: 1.5rem;
-           font-size: 1.25rem;
-       }
-   }
    
    /* ==========================================
       RESPONSIVE DESIGN
@@ -2678,195 +2649,165 @@
        margin-top: 0;
    }
    
-   /* ==========================================
-      MOBILE MENU
-      ========================================== */
-   
-   /* ==========================================
-      RESPONSIVE DESIGN - MOBILE
-      ========================================== */
-   
-   /* ==========================================
-      MENU MOBILE FULL-SCREEN STYLE JANCY
-      ========================================== */
-   
+   /* ---------- MOBILE MENU (FULL-SCREEN) - Consolidé ---------- */
+   /* mobile toggle */
    .mobile-menu-toggle {
-       display: none;
-       flex-direction: column;
-       gap: 0.4rem;
-       background: none;
-       border: none;
-       cursor: pointer;
-       padding: 0.5rem;
-       z-index: 2001;
-       position: relative;
+     display: none;
+     background: none;
+     border: none;
+     cursor: pointer;
+     padding: 0.5rem;
+     z-index: 2200;
+     position: relative;
+     color: var(--cyan);
    }
+   .mobile-menu-toggle i { font-size: 1.5rem; display:inline-block; }
    
-   .mobile-menu-toggle span {
-       width: 25px;
-       height: 3px;
-       background: var(--cyan);
-       border-radius: 2px;
-       transition: all 0.3s ease;
-   }
-   
-   /* Icône Font Awesome */
-   .mobile-menu-toggle i {
-       color: var(--cyan);
-       font-size: 1.75rem;
-       transition: all 0.3s ease;
-   }
-   
-   /* Animation du bouton hamburger → X */
-   .mobile-menu-toggle.active i.fa-bars {
-       display: none;
-   }
-   
-   .mobile-menu-toggle.active i.fa-times {
-       display: block;
-   }
-   
-   .mobile-menu-toggle i.fa-times {
-       display: none;
-   }
-   
-   /* Menu mobile FULL-SCREEN */
+   /* menu principal (desktop by default) */
    .nav-links {
-       display: flex;
-       list-style: none;
-       gap: 3rem;
-       align-items: center;
+     display: flex;
+     list-style: none;
+     gap: 3rem;
+     align-items: center;
    }
    
+   /* Menu full-screen mobile */
    @media (max-width: 768px) {
-       
-       /* Afficher le bouton hamburger */
-       .mobile-menu-toggle {
-           display: block;
-       }
-       
-       /* Menu caché par défaut */
-       .nav-links {
-           position: fixed;
-           top: 0;
-           left: 0;
-           width: 100vw;
-           height: 100vh;
-           background: rgba(2, 6, 23, 0.98);
-           backdrop-filter: blur(20px);
-           
-           /* Centrer le contenu */
-           display: flex;
-           flex-direction: column;
-           justify-content: center;
-           align-items: center;
-           gap: 3rem;
-           
-           /* Animation */
-           opacity: 0;
-           visibility: hidden;
-           transform: scale(0.95);
-           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-           
-           z-index: 2000;
-           padding: 4rem 2rem;
-       }
-       
-       /* Menu ouvert */
-       .nav-links.mobile-open {
-           opacity: 1;
-           visibility: visible;
-           transform: scale(1);
-       }
-       
-       /* Style des liens */
-       .nav-links li {
-           width: auto;
-           text-align: center;
-           opacity: 0;
-           transform: translateY(20px);
-           animation: fadeInUp 0.5s ease forwards;
-       }
-       
-       .nav-links.mobile-open li:nth-child(1) { animation-delay: 0.1s; }
-       .nav-links.mobile-open li:nth-child(2) { animation-delay: 0.2s; }
-       .nav-links.mobile-open li:nth-child(3) { animation-delay: 0.3s; }
-       .nav-links.mobile-open li:nth-child(4) { animation-delay: 0.4s; }
-       .nav-links.mobile-open li:nth-child(5) { animation-delay: 0.5s; }
-       
-       @keyframes fadeInUp {
-           to {
-               opacity: 1;
-               transform: translateY(0);
-           }
-       }
-       
-       .nav-links a {
-           display: block;
-           padding: 1rem 2rem;
-           font-size: 2rem;
-           font-weight: 700;
-           color: var(--text-secondary);
-           text-decoration: none;
-           position: relative;
-           transition: all 0.3s ease;
-       }
-       
-       .nav-links a:hover,
-       .nav-links a.active {
-           color: var(--cyan);
-           transform: translateX(10px);
-       }
-       
-       /* Soulignement animé */
-       .nav-links a::after {
-           content: '';
-           position: absolute;
-           bottom: 0;
-           left: 50%;
-           transform: translateX(-50%);
-           width: 0;
-           height: 3px;
-           background: var(--cyan);
-           transition: width 0.3s ease;
-       }
-       
-       .nav-links a:hover::after,
-       .nav-links a.active::after {
-           width: 60%;
-       }
-       
-       /* Bouton CTA dans le menu */
-       .cta-button {
-           width: auto;
-           padding: 1.25rem 3rem;
-           font-size: 1.5rem;
-           text-align: center;
-           margin-top: 2rem;
-       }
-       
-       /* Fermeture au clic sur le fond */
-       .nav-links.mobile-open::before {
-           content: '';
-           position: absolute;
-           inset: 0;
-           background: rgba(0, 0, 0, 0.5);
-           z-index: -1;
-       }
+     .mobile-menu-toggle { display: block; }
+   
+     .nav-links {
+       position: fixed;
+       inset: 0;
+       width: 100vw;
+       height: 100vh;
+       background: rgba(2,6,23,0.98);
+       backdrop-filter: blur(18px);
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       gap: 2.25rem;
+       opacity: 0;
+       visibility: hidden;
+       transform: scale(0.98);
+       transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+       z-index: 2100;
+       padding: 4rem 2rem;
+       overflow-y: auto;
+     }
+   
+     .nav-links.mobile-open {
+       opacity: 1;
+       visibility: visible;
+       transform: scale(1);
+     }
+   
+     .nav-links li {
+       width: 100%;
+       text-align: center;
+       opacity: 0;
+       transform: translateY(12px);
+       animation: fadeInUp 0.45s ease forwards;
+     }
+   
+     .nav-links.mobile-open li:nth-child(1){animation-delay:0.08s;}
+     .nav-links.mobile-open li:nth-child(2){animation-delay:0.16s;}
+     .nav-links.mobile-open li:nth-child(3){animation-delay:0.24s;}
+     .nav-links.mobile-open li:nth-child(4){animation-delay:0.32s;}
+     .nav-links.mobile-open li:nth-child(5){animation-delay:0.40s;}
+   
+     .nav-links a {
+       display: block;
+       padding: 1rem 2rem;
+       font-size: 1.6rem;
+       font-weight: 700;
+       color: var(--text-secondary);
+       text-decoration: none;
+     }
+   
+     .nav-links a:hover,
+     .nav-links a.active { color: var(--cyan); transform: translateX(6px); }
+   
+     @keyframes fadeInUp {
+       to { opacity: 1; transform: translateY(0); }
+     }
+   
+     /* ensure CTA fits */
+     .cta-button { width: auto; padding: 1.1rem 2.5rem; font-size: 1.1rem; margin-top: 1rem; }
    }
    
-   /* Mode clair */
-   @media (prefers-color-scheme: light) {
-       @media (max-width: 768px) {
-           .nav-links {
-               background: rgba(248, 250, 252, 0.98) !important;
-           }
-           
-           .nav-links a {
-               color: var(--text-primary);
-           }
-       }
+   /* Close-on-backdrop pseudo element (for visual dim) */
+   .nav-links.mobile-open::before {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background: rgba(0,0,0,0.35);
+     z-index: -1;
    }
+   
+   /* ---------- SCROLL-TO-TOP ---------- */
+   .scroll-to-top{
+     position: fixed;
+     bottom: 2rem;
+     right: 2rem;
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     background: linear-gradient(135deg,var(--cyan),var(--violet));
+     color: #fff;
+     border: none;
+     opacity: 0;
+     visibility: hidden;
+     transform: translateY(8px);
+     transition: all 0.28s ease;
+     z-index: 9999;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 1.25rem;
+     box-shadow: var(--shadow-lg);
+   }
+   .scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+   @media (max-width:768px){
+     .scroll-to-top{ width:50px; height:50px; right:1.25rem; bottom:1.25rem; font-size:1rem;}
+   }
+   
+   /* ---------- PROJECT NAV BUTTONS (flèches) ---------- */
+   .project-visuals { position: relative; }
+   .nav-buttons { display:flex; gap:1rem; justify-content:center; margin-top:1.25rem; }
+   
+   /* floating nav-btns — ensure always visible on top of images */
+   .nav-btn{
+     width:56px !important;
+     height:56px !important;
+     min-width:56px !important;
+     min-height:56px !important;
+     border-radius:50% !important;
+     display:flex !important;
+     align-items:center !important;
+     justify-content:center !important;
+     position:relative !important;
+     z-index: 2050 !important; /* high so it stays above overlays */
+     background: linear-gradient(135deg,var(--cyan),var(--violet)) !important;
+     color:white !important;
+     border: 3px solid rgba(255,255,255,0.95) !important;
+     box-shadow: 0 8px 28px rgba(6,182,212,0.28) !important;
+     cursor:pointer !important;
+     font-size: 1.2rem !important;
+   }
+   
+   /* make sure arrows are visible on small screens */
+   @media (max-width:768px){
+     .nav-btn{ width:48px !important; height:48px !important; font-size:1rem !important; }
+     .thumbnail-grid { grid-template-columns: repeat(2,1fr); gap:0.5rem; }
+   }
+   
+   /* ensure main-image is responsive */
+   .main-image img{ width:100%; height:auto; display:block; }
+   
+   /* tiny accessibility and pointer hint */
+   .nav-btn:focus{ outline: 3px solid rgba(6,182,212,0.25); outline-offset: 3px; }
+   
    /* ==========================================
       TOOLTIPS
       ========================================== */
@@ -2989,6 +2930,9 @@
            grid-template-columns: 1fr;
        }
    }
+   
+   
+   
    /* ==========================================
       FIX MODE CLAIR - Corrections des hovers
       ========================================== */
@@ -3201,6 +3145,94 @@
            box-shadow: var(--shadow-lg);
        }
    }
+   
+   
+   /* Animation de pulsation */
+   @keyframes pulse-arrow {
+       0% {
+           box-shadow: 0 8px 24px rgba(6, 182, 212, 0.5), 0 0 0 0 rgba(6, 182, 212, 0.7);
+       }
+       50% {
+           box-shadow: 0 8px 24px rgba(6, 182, 212, 0.5), 0 0 0 10px rgba(6, 182, 212, 0);
+       }
+       100% {
+           box-shadow: 0 8px 24px rgba(6, 182, 212, 0.5), 0 0 0 0 rgba(6, 182, 212, 0);
+       }
+   }
+   
+   .nav-btn {
+       animation: pulse-arrow 2s ease-in-out infinite !important;
+   }
+   
+   .nav-btn:hover {
+       transform: scale(1.25) rotate(5deg) !important;
+       box-shadow: 0 0 50px rgba(6, 182, 212, 0.8) !important;
+       border-color: #ffd700 !important;
+       animation: none !important;
+   }
+   
+   .nav-btn:active {
+       transform: scale(1.15) !important;
+   }
+   
+   .nav-btn i {
+       font-size: 1.75rem !important;
+       color: white !important;
+       pointer-events: none !important;
+   }
+   
+   /* Effet glow permanent */
+   .nav-btn::before {
+       content: '' !important;
+       position: absolute !important;
+       inset: -4px !important;
+       background: linear-gradient(135deg, #06b6d4, #8b5cf6) !important;
+       border-radius: 50% !important;
+       z-index: -1 !important;
+       opacity: 0.3 !important;
+       filter: blur(10px) !important;
+   }
+   
+   /* Responsive */
+   @media (max-width: 768px) {
+       .nav-btn {
+           width: 55px !important;
+           height: 55px !important;
+           font-size: 1.4rem !important;
+           border-width: 3px !important;
+       }
+       
+       .nav-btn i {
+           font-size: 1.4rem !important;
+       }
+   }
+   
+   /* Mode clair */
+   @media (prefers-color-scheme: light) {
+       .nav-btn {
+           border-color: rgba(0, 0, 0, 0.2) !important;
+           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0.4) !important;
+       }
+       
+       @keyframes pulse-arrow {
+           0% {
+               box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0.7);
+           }
+           50% {
+               box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(8, 145, 178, 0);
+           }
+           100% {
+               box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0);
+           }
+       }
+       
+       .nav-btn:hover {
+           box-shadow: 0 12px 40px rgba(8, 145, 178, 0.4) !important;
+           border-color: #f97316 !important;
+       }
+   }
+   
+   /* FIN DES AMÉLIORATIONS */
    /* ==========================================
       FIN DU FICHIER
       ========================================== */
