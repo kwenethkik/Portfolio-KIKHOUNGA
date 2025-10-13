@@ -1,96 +1,290 @@
 // ==========================================
 // TECH FUSION DESIGN - Portfolio Kweneth
-// Script JavaScript avec animations avancÃ©es
+// JavaScript optimisé et nettoyé
 // ==========================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Portfolio Kweneth - Tech Fusion initialisÃ©');
+(function() {
+    'use strict';
+    
+    console.log('🛠️ Portfolio Kweneth - Initialisation...');
+    
+    // ==========================================
+    // UTILITY FUNCTIONS
+    // ==========================================
+    
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    function throttle(func, delay) {
+        let lastCall = 0;
+        return function(...args) {
+            const now = Date.now();
+            if (now - lastCall >= delay) {
+                lastCall = now;
+                return func(...args);
+            }
+        };
+    }
     
     // ==========================================
     // SMOOTH SCROLL NAVIGATION
     // ==========================================
-    const navLinks = document.querySelectorAll('a[href^="#"]');
     
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const headerOffset = 100;
-                const elementPosition = targetSection.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    function initSmoothScroll() {
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
                 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    e.preventDefault();
+                    
+                    const headerOffset = 100;
+                    const elementPosition = targetSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fermer le menu mobile si ouvert
+                    const navLinks = document.querySelector('.nav-links');
+                    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                    if (navLinks && navLinks.classList.contains('mobile-open')) {
+                        navLinks.classList.remove('mobile-open');
+                        if (mobileToggle) mobileToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
         });
-    });
-
+    }
+    
     // ==========================================
     // HEADER SCROLL EFFECTS
     // ==========================================
-    const header = document.querySelector('header');
-
-    function handleHeaderScroll() {
-        const currentScrollY = window.scrollY;
-
-        if (currentScrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    
+    function initHeaderScroll() {
+        const header = document.querySelector('header');
+        if (!header) return;
+        
+        function handleScroll() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
+        
+        window.addEventListener('scroll', debounce(handleScroll, 10));
+        handleScroll(); // Check initial state
     }
+    
+    // ==========================================
+    // MOBILE MENU TOGGLE
+    // ==========================================
+    
+    function initMobileMenu() {
+        console.log('🛠️ Initialisation du menu mobile...');
 
-    window.addEventListener('scroll', debounce(handleHeaderScroll, 10));
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (!nav || !navLinks) {
+            console.warn('⚠️ Éléments nav ou nav-links introuvables');
+            return;
+        }
 
+        // Créer le bouton mobile s'il n'existe pas
+        let mobileToggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (!mobileToggle) {
+            console.log('🛠️ Création du bouton hamburger...');
+
+            mobileToggle = document.createElement('button');
+            mobileToggle.className = 'mobile-menu-toggle';
+            // Utiliser uniquement l'icône fa-bars (🍔) de Font Awesome
+            mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileToggle.setAttribute('aria-label', 'Toggle mobile menu');
+            mobileToggle.setAttribute('type', 'button');
+            
+            // Insérer après le logo
+            const logo = nav.querySelector('.logo');
+            if (logo) {
+                logo.insertAdjacentElement('afterend', mobileToggle);
+            } else {
+                nav.appendChild(mobileToggle);
+            }
+
+            console.log('✅ Bouton hamburger créé avec succès');
+        }
+        
+        // Toggle du menu
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            const isOpen = navLinks.classList.toggle('mobile-open');
+            mobileToggle.classList.toggle('active');
+
+            console.log(`🛠️ Menu mobile ${isOpen ? 'ouvert' : 'fermé'}`);
+
+            // Bloquer le scroll du body quand le menu est ouvert
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+        
+        // Fermer le menu au clic sur un lien
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                console.log('🛠️ Clic sur lien - fermeture du menu');
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Fermer au clic en dehors du menu
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('mobile-open')) {
+                if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    console.log('🛠️ Clic extérieur - fermeture du menu');
+                    navLinks.classList.remove('mobile-open');
+                    mobileToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+        
+        // Fermer avec la touche Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+                console.log('🛠️ Escape - fermeture du menu');
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Vérifier la taille de l'écran au redimensionnement
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 768) {
+                    // Desktop : fermer le menu et restaurer le scroll
+                    navLinks.classList.remove('mobile-open');
+                    mobileToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    console.log('🛠️ Mode desktop - menu restauré');
+                }
+            }, 250);
+        });
+        
+        console.log('✅ Menu mobile initialisé avec succès');
+    }
+    
+    // ==========================================
+    // SCROLL TO TOP BUTTON
+    // ==========================================
+    
+    function initScrollToTop() {
+        // Vérifier si le bouton existe déjà
+        let scrollBtn = document.querySelector('.scroll-to-top');
+
+        // Créer le bouton s'il n'existe pas
+        if (!scrollBtn) {
+            scrollBtn = document.createElement('button');
+            scrollBtn.className = 'scroll-to-top';
+            scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            scrollBtn.setAttribute('aria-label', 'Retour en haut de page');
+            scrollBtn.setAttribute('type', 'button');
+            document.body.appendChild(scrollBtn);
+        }
+        
+        // Afficher/masquer selon le scroll
+        function toggleScrollButton() {
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        }
+        
+        window.addEventListener('scroll', debounce(toggleScrollButton, 100));
+        toggleScrollButton(); // Check initial state
+        
+        // Action au clic
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Animation de feedback
+            scrollBtn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                scrollBtn.style.transform = '';
+            }, 150);
+        });
+        
+        console.log('✅ Bouton scroll-to-top initialisé avec succès');
+    }
+    
     // ==========================================
     // INTERSECTION OBSERVER ANIMATIONS
     // ==========================================
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-                // Observer une seule fois
-                observer.unobserve(entry.target);
-            }
+    
+    function initAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        const animatedElements = document.querySelectorAll(
+            '.timeline-item, .formation-card, .skill-category, .language-item, .project-card'
+        );
+        
+        animatedElements.forEach((el, index) => {
+            el.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(el);
         });
-    }, observerOptions);
-
-    // Observer tous les Ã©lÃ©ments animÃ©s
-    const animatedElements = document.querySelectorAll(
-        '.timeline-item, .formation-card, .skill-category, .language-item, .project-card'
-    );
-
-    animatedElements.forEach((el, index) => {
-        // DÃ©lai d'animation basÃ© sur l'index
-        el.style.transitionDelay = `${index * 0.1}s`;
-        observer.observe(el);
-    });
-
+    }
+    
     // ==========================================
-    // BARRES DE PROGRESSION LANGUES
+    // LANGUAGE PROGRESS BARS
     // ==========================================
-    function animateLanguageBars() {
+    
+    function initLanguageBars() {
         const languageItems = document.querySelectorAll('.language-item');
+        if (languageItems.length === 0) return;
         
         const langObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const progressBar = entry.target.querySelector('.language-progress');
                     if (progressBar) {
-                        // Animation avec dÃ©lai
                         setTimeout(() => {
                             progressBar.style.transition = 'width 1.5s ease-in-out';
                         }, 300);
@@ -99,198 +293,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }, { threshold: 0.5 });
-
+        
         languageItems.forEach(item => {
             langObserver.observe(item);
         });
     }
-
-    animateLanguageBars();
-
-    // ==========================================
-    // CV DOWNLOAD BUTTONS INTERACTION
-    // ==========================================
-    function initDownloadButtons() {
-        const downloadButtons = document.querySelectorAll('.cv-download-btn');
-        
-        downloadButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                
-                // Animation de feedback
-                this.style.transform = 'scale(0.95)';
-                const originalHTML = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Téléchargement...';
-
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                    this.innerHTML = '<i class="fas fa-check"></i> Téléchargé !';
-
-                    setTimeout(() => {
-                        this.innerHTML = originalHTML;
-                    }, 2000);
-                }, 1500);
-
-                console.log('TÃ©lÃ©chargement du CV de Kweneth KIKHOUNGA...');
-            });
-        });
-    }
-
-    initDownloadButtons();
-
-    // ==========================================
-    // PROJECT GALLERY INTERACTION
-    // ==========================================
-   function initProjectGalleryEnhanced() {
-    console.log(' Initialisation améliorée de la galerie projets...');
-
-    const projectCards = document.querySelectorAll('.project-card');
-    console.log(`Nombre de cartes projet: ${projectCards.length}`);
     
-    projectCards.forEach((card, cardIndex) => {
-        const mainImage = card.querySelector('.main-image img');
-        const thumbnails = card.querySelectorAll('.thumbnail');
-        const navBtns = card.querySelectorAll('.nav-btn');
-        
-        if (!mainImage) {
-            console.warn('Pas d\'image principale dans carte', cardIndex);
-            return;
-        }
-
-        // S'assurer que les boutons ont les icônes Font Awesome
-        if (navBtns.length === 2) {
-            navBtns[0].innerHTML = '<i class="fas fa-chevron-left"></i>';
-            navBtns[1].innerHTML = '<i class="fas fa-chevron-right"></i>';
-        }
-        
-        // Collecter toutes les images valides
-        let images = [mainImage.src];
-        
-        thumbnails.forEach(thumb => {
-            const thumbImg = thumb.querySelector('img');
-            if (thumbImg && thumbImg.src && thumbImg.src !== '' && thumbImg.src !== window.location.href) {
-                images.push(thumbImg.src);
-            }
-        });
-        
-        console.log(`ðŸ“¦ Carte ${cardIndex + 1}: ${images.length} images`);
-        
-        let currentIndex = 0;
-        
-        // Gestion des clics sur thumbnails avec animation amÃ©liorÃ©e
-        thumbnails.forEach((thumb, thumbIndex) => {
-            const thumbImg = thumb.querySelector('img');
-            
-            if (!thumbImg || !thumbImg.src || thumbImg.src === '' || thumbImg.src === window.location.href) {
-                thumb.style.opacity = '0.3';
-                thumb.style.cursor = 'not-allowed';
-                return;
-            }
-            
-            thumb.addEventListener('click', function() {
-                console.log(`ðŸ–±ï¸ Clic sur thumbnail ${thumbIndex + 1}`);
-                
-                // Animation de l'image principale
-                mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                mainImage.style.opacity = '0';
-                mainImage.style.transform = 'scale(0.95)';
-                
-                setTimeout(() => {
-                    // Échanger les sources
-                    const tempSrc = mainImage.src;
-                    mainImage.src = thumbImg.src;
-                    thumbImg.src = tempSrc;
-                    
-                    // Restaurer l'animation
-                    mainImage.style.opacity = '1';
-                    mainImage.style.transform = 'scale(1)';
-
-                    console.log('✅ Images échangées');
-                }, 300);
-            });
-        });
-
-        // Gestion améliorée des boutons de navigation
-        if (navBtns.length === 2 && images.length > 1) {
-            // Bouton précédent
-            navBtns[0].addEventListener('click', () => {
-                console.log('◀️ Navigation précédente');
-
-                // Effet visuel sur le bouton
-                navBtns[0].style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    navBtns[0].style.transform = '';
-                }, 150);
-                
-                mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                mainImage.style.opacity = '0';
-                mainImage.style.transform = 'scale(0.95) translateX(20px)';
-                
-                setTimeout(() => {
-                    currentIndex = (currentIndex - 1 + images.length) % images.length;
-                    mainImage.src = images[currentIndex];
-                    
-                    mainImage.style.opacity = '1';
-                    mainImage.style.transform = 'scale(1) translateX(0)';
-                }, 300);
-            });
-            
-            // Bouton suivant
-            navBtns[1].addEventListener('click', () => {
-                console.log('➡️ Navigation suivante');
-
-                // Effet visuel sur le bouton
-                navBtns[1].style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    navBtns[1].style.transform = '';
-                }, 150);
-                
-                mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                mainImage.style.opacity = '0';
-                mainImage.style.transform = 'scale(0.95) translateX(-20px)';
-                
-                setTimeout(() => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    mainImage.src = images[currentIndex];
-                    
-                    mainImage.style.opacity = '1';
-                    mainImage.style.transform = 'scale(1) translateX(0)';
-                }, 300);
-            });
-            
-            // Support du clavier
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    navBtns[0].click();
-                } else if (e.key === 'ArrowRight') {
-                    navBtns[1].click();
-                }
-            });
-        }
-    });
-
-    console.log('✅ Galerie projets améliorée initialisée');
-}
-
-// ==========================================
-// Initialiser au chargement de la page
-// ==========================================
-
-// Remplacer les anciennes fonctions dans script.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialiser le bouton scroll-to-top sur toutes les pages
-    initScrollToTop();
+    // ==========================================
+    // CV TABS NAVIGATION
+    // ==========================================
     
-    // Initialiser la galerie amÃ©liorÃ©e si on est sur la page projets
-    if (document.querySelector('.projects-grid')) {
-        initProjectGalleryEnhanced();
-    }
-});
-
-console.log('ðŸš€ AmÃ©liorations chargÃ©es : Scroll-to-top + Navigation projets');
-
-    // ==========================================
-    // GESTION DES ONGLETS CV
-    // ==========================================
     function initCVTabs() {
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -333,90 +345,159 @@ console.log('ðŸš€ AmÃ©liorations chargÃ©es : Scroll-to-top + Navigation
         if (document.getElementById('experience')) {
             switchTab('experience');
         }
-    }
-
-    initCVTabs();
-
-    // ==========================================
-    // MOBILE MENU TOGGLE
-    // ==========================================
-    // ==========================================
-// MOBILE MENU FULL-SCREEN (Style Jancy)
-// ==========================================
-function initMobileMenu() {
-    const nav = document.querySelector('nav');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (!nav || !navLinks) return;
-    
-    // Créer le bouton mobile s'il n'existe pas
-    let mobileToggle = document.querySelector('.mobile-menu-toggle');
-    
-    if (!mobileToggle) {
-        mobileToggle = document.createElement('button');
-        mobileToggle.className = 'mobile-menu-toggle';
-        mobileToggle.innerHTML = `
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-times"></i>
-        `;
-        mobileToggle.setAttribute('aria-label', 'Toggle mobile menu');
         
-        // Insérer le bouton dans la navigation
-        const navRight = nav.querySelector('.nav-right');
-        if (navRight) {
-            navRight.appendChild(mobileToggle);
-        } else {
-            nav.appendChild(mobileToggle);
-        }
+        console.log('âœ… Onglets CV initialisÃ©s');
     }
     
-    // Toggle du menu
-    mobileToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navLinks.classList.toggle('mobile-open');
-        mobileToggle.classList.toggle('active');
-        
-        // Bloquer le scroll du body quand le menu est ouvert
-        if (navLinks.classList.contains('mobile-open')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    });
+    // ==========================================
+    // PROJECT GALLERY NAVIGATION
+    // ==========================================
     
-    // Fermer le menu au clic sur un lien
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('mobile-open');
-            mobileToggle.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-    
-    // Fermer au clic en dehors du menu
-    document.addEventListener('click', (e) => {
-        if (navLinks.classList.contains('mobile-open')) {
-            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
-                navLinks.classList.remove('mobile-open');
-                mobileToggle.classList.remove('active');
-                document.body.style.overflow = '';
+    function initProjectGallery() {
+        const projectCards = document.querySelectorAll('.project-card');
+        if (projectCards.length === 0) return;
+
+        console.log(`🖼️ ${projectCards.length} cartes projet trouvées`);
+
+        projectCards.forEach((card, cardIndex) => {
+            const mainImage = card.querySelector('.main-image img');
+            const thumbnails = card.querySelectorAll('.thumbnail');
+            const navBtns = card.querySelectorAll('.nav-btn');
+            
+            if (!mainImage) {
+                console.warn(`⚠️ Pas d'image principale dans la carte ${cardIndex + 1}`);
+                return;
             }
-        }
-    });
-    
-    // Fermer avec la touche Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
-            navLinks.classList.remove('mobile-open');
-            mobileToggle.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-}
 
+            // S'assurer que les boutons ont les icônes Font Awesome
+            if (navBtns.length === 2) {
+                navBtns[0].innerHTML = '<i class="fas fa-chevron-left"></i>';
+                navBtns[1].innerHTML = '<i class="fas fa-chevron-right"></i>';
+            }
+            
+            // Collecter toutes les images valides
+            let images = [mainImage.src];
+            
+            thumbnails.forEach(thumb => {
+                const thumbImg = thumb.querySelector('img');
+                if (thumbImg && thumbImg.src && thumbImg.src !== '' && thumbImg.src !== window.location.href) {
+                    images.push(thumbImg.src);
+                }
+            });
+            
+            console.log(`🖼️ Carte ${cardIndex + 1}: ${images.length} images`);
+            
+            let currentIndex = 0;
+            
+            // Gestion des clics sur thumbnails
+            thumbnails.forEach((thumb, thumbIndex) => {
+                const thumbImg = thumb.querySelector('img');
+                
+                if (!thumbImg || !thumbImg.src || thumbImg.src === '' || thumbImg.src === window.location.href) {
+                    thumb.style.opacity = '0.3';
+                    thumb.style.cursor = 'not-allowed';
+                    return;
+                }
+                
+                thumb.addEventListener('click', function() {
+                    console.log(`🖼️ Clic sur thumbnail ${thumbIndex + 1}`);
+
+                    // Animation de l'image principale
+                    mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    mainImage.style.opacity = '0';
+                    mainImage.style.transform = 'scale(0.95)';
+                    
+                    setTimeout(() => {
+                        // Échanger les sources
+                        const tempSrc = mainImage.src;
+                        mainImage.src = thumbImg.src;
+                        thumbImg.src = tempSrc;
+
+                        // Mettre à jour l'index
+                        currentIndex = images.indexOf(mainImage.src);
+                        
+                        // Restaurer l'animation
+                        mainImage.style.opacity = '1';
+                        mainImage.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+            
+            // Gestion des boutons de navigation
+            if (navBtns.length === 2 && images.length > 1) {
+                // Bouton précédent
+                navBtns[0].addEventListener('click', () => {
+                    console.log('🖼️ Navigation précédente');
+
+                    // Effet visuel sur le bouton
+                    navBtns[0].style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        navBtns[0].style.transform = '';
+                    }, 150);
+                    
+                    mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    mainImage.style.opacity = '0';
+                    mainImage.style.transform = 'scale(0.95) translateX(20px)';
+                    
+                    setTimeout(() => {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        mainImage.src = images[currentIndex];
+                        
+                        mainImage.style.opacity = '1';
+                        mainImage.style.transform = 'scale(1) translateX(0)';
+                    }, 300);
+                });
+                
+                // Bouton suivant
+                navBtns[1].addEventListener('click', () => {
+                    console.log('🖼️ Navigation suivante');
+
+                    // Effet visuel sur le bouton
+                    navBtns[1].style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        navBtns[1].style.transform = '';
+                    }, 150);
+                    
+                    mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    mainImage.style.opacity = '0';
+                    mainImage.style.transform = 'scale(0.95) translateX(-20px)';
+                    
+                    setTimeout(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        mainImage.src = images[currentIndex];
+                        
+                        mainImage.style.opacity = '1';
+                        mainImage.style.transform = 'scale(1) translateX(0)';
+                    }, 300);
+                });
+            }
+        });
+        
+        // Support du clavier (flÃ¨ches gauche/droite)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                const firstCard = document.querySelector('.project-card');
+                if (!firstCard) return;
+                
+                const navBtns = firstCard.querySelectorAll('.nav-btn');
+                if (navBtns.length === 2) {
+                    e.preventDefault();
+                    if (e.key === 'ArrowLeft') {
+                        navBtns[0].click();
+                    } else {
+                        navBtns[1].click();
+                    }
+                }
+            }
+        });
+        
+        console.log('🖼️ Galerie projets initialisée');
+    }
+    
     // ==========================================
     // ACTIVE NAVIGATION HIGHLIGHTING
     // ==========================================
+    
     function initActiveNavigation() {
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
@@ -440,74 +521,18 @@ function initMobileMenu() {
             threshold: 0.3,
             rootMargin: '-100px 0px -100px 0px'
         });
-
+        
         sections.forEach(section => {
             navObserver.observe(section);
         });
     }
-
-    initActiveNavigation();
-
+    
     // ==========================================
-    // PARALLAX EFFECT SUR HERO
+    // CONTACT FORM HANDLING
     // ==========================================
-    function initParallaxEffect() {
-        const heroImage = document.querySelector('.hero-image');
-        
-        if (!heroImage) return;
-        
-        window.addEventListener('scroll', debounce(() => {
-            const scrolled = window.pageYOffset;
-            const parallaxSpeed = 0.5;
-            
-            heroImage.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-        }, 10));
-    }
-
-    initParallaxEffect();
-
-    // ==========================================
-    // TYPING ANIMATION POUR TITRE
-    // ==========================================
-    function initTypingAnimation() {
-        const heroTitle = document.querySelector('.main-title .name-highlight');
-        if (!heroTitle) return;
-
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = '';
-        
-        let index = 0;
-        const typingSpeed = 100;
-
-        function typeText() {
-            if (index < originalText.length) {
-                heroTitle.textContent += originalText.charAt(index);
-                index++;
-                setTimeout(typeText, typingSpeed);
-            } else {
-                // Ajouter un curseur clignotant temporaire
-                heroTitle.style.borderRight = '3px solid var(--cyan)';
-                setTimeout(() => {
-                    heroTitle.style.borderRight = 'none';
-                }, 1000);
-            }
-        }
-
-        // DÃ©lai avant de commencer l'animation
-        setTimeout(typeText, 800);
-    }
-
-    // Activer seulement sur la page d'accueil
-    if (document.querySelector('.hero')) {
-        initTypingAnimation();
-    }
-
-    // ==========================================
-    // CONTACT FORM VALIDATION
-    // ==========================================
+    
     function initContactForm() {
         const contactForm = document.getElementById('contact-form');
-        
         if (!contactForm) return;
         
         contactForm.addEventListener('submit', function(e) {
@@ -523,7 +548,7 @@ function initMobileMenu() {
             
             // Simuler l'envoi
             setTimeout(() => {
-                submitBtn.textContent = 'Message envoyÃ© !';
+                submitBtn.textContent = 'Message envoyé !';
                 submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 
                 setTimeout(() => {
@@ -536,91 +561,14 @@ function initMobileMenu() {
             }, 2000);
         });
     }
-
-    initContactForm();
-
-    // ==========================================
-    // PERFORMANCE MONITORING
-    // ==========================================
-    function initPerformanceMonitoring() {
-        if ('PerformanceObserver' in window) {
-            const observer = new PerformanceObserver((list) => {
-                const entries = list.getEntries();
-                entries.forEach(entry => {
-                    if (entry.entryType === 'navigation') {
-                        console.log(`ðŸ“„ Page chargÃ©e en ${Math.round(entry.loadEventEnd - entry.loadEventStart)}ms`);
-                    }
-                });
-            });
-            
-            try {
-                observer.observe({ entryTypes: ['navigation'] });
-            } catch (error) {
-                console.log('Performance monitoring non supportÃ©');
-            }
-        }
-    }
-
-    initPerformanceMonitoring();
-
-    // ==========================================
-    // EASTER EGG - KONAMI CODE
-    // ==========================================
-    function initEasterEgg() {
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        
-        document.addEventListener('keydown', (event) => {
-            if (event.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    activateEasterEgg();
-                    konamiIndex = 0;
-                }
-            } else {
-                konamiIndex = 0;
-            }
-        });
-        
-        function activateEasterEgg() {
-            console.log('ðŸŽ® Konami Code activÃ©!');
-            document.body.style.animation = 'rainbow 2s ease infinite';
-            
-            setTimeout(() => {
-                document.body.style.animation = '';
-            }, 5000);
-        }
-    }
-
-    initEasterEgg();
-
-    // ==========================================
-    // LAZY LOADING IMAGES
-    // ==========================================
-    function initLazyLoading() {
-        const images = document.querySelectorAll('img[data-src]');
-        
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
-    }
-
-    initLazyLoading();
-
+    
     // ==========================================
     // STATS COUNTER ANIMATION
     // ==========================================
+    
     function initStatsCounter() {
         const statNumbers = document.querySelectorAll('.stat-item h3');
+        if (statNumbers.length === 0) return;
         
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -638,110 +586,49 @@ function initMobileMenu() {
         });
         
         statNumbers.forEach(stat => statsObserver.observe(stat));
-    }
-
-    function animateCounter(element, start, end, duration, originalText) {
-        const startTime = Date.now();
-        const suffix = originalText.replace(/[0-9]/g, '');
         
-        function update() {
-            const now = Date.now();
-            const progress = Math.min((now - startTime) / duration, 1);
-            const current = Math.floor(progress * (end - start) + start);
+        function animateCounter(element, start, end, duration, originalText) {
+            const startTime = Date.now();
+            const suffix = originalText.replace(/[0-9]/g, '');
             
-            element.textContent = current + suffix;
-            
-            if (progress < 1) {
-                requestAnimationFrame(update);
+            function update() {
+                const now = Date.now();
+                const progress = Math.min((now - startTime) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                
+                element.textContent = current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
             }
-        }
-        
-        update();
-    }
-
-    initStatsCounter();
-
-    // ==========================================
-// AMeLIORATION : SCROLL TO TOP sur toutes les pages
-// ==========================================
-
-// Cette fonction remplace l'ancienne fonction initScrollToTop() dans script.js
-function initScrollToTop() {
-    // Vérifier si le bouton existe déjà
-    let scrollBtn = document.querySelector('.scroll-to-top');
-
-    // Créer le bouton s'il n'existe pas
-    if (!scrollBtn) {
-        scrollBtn = document.createElement('button');
-        scrollBtn.className = 'scroll-to-top';
-        scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        scrollBtn.setAttribute('aria-label', 'Retour en haut de page');
-        document.body.appendChild(scrollBtn);
-    }
-    
-    // Afficher/masquer selon le scroll avec classe 'visible'
-    function toggleScrollButton() {
-        if (window.pageYOffset > 500) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
+            
+            update();
         }
     }
-
-    // Événement au scroll
-    window.addEventListener('scroll', debounce(toggleScrollButton, 100));
-
-    // Vérifier au chargement
-    toggleScrollButton();
     
-    // Action au clic
-    scrollBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-        
-        // Animation de feedback
-        scrollBtn.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            scrollBtn.style.transform = '';
-        }, 150);
-    });
-    
-    console.log('âœ… Bouton scroll-to-top initialisÃ©');
-}
-
-// S'assurer que la fonction debounce existe
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
     // ==========================================
     // PROGRESS BAR AU SCROLL
     // ==========================================
+    
     function initScrollProgress() {
-        const progressBar = document.createElement('div');
-        progressBar.className = 'scroll-progress';
-        progressBar.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cyan), var(--violet), var(--orange));
-            width: 0%;
-            z-index: 9999;
-            transition: width 0.1s ease;
-        `;
+        let progressBar = document.querySelector('.scroll-progress');
         
-        document.body.appendChild(progressBar);
+        if (!progressBar) {
+            progressBar = document.createElement('div');
+            progressBar.className = 'scroll-progress';
+            progressBar.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 3px;
+                background: linear-gradient(90deg, var(--cyan), var(--violet), var(--orange));
+                width: 0%;
+                z-index: 9999;
+                transition: width 0.1s ease;
+            `;
+            document.body.appendChild(progressBar);
+        }
         
         window.addEventListener('scroll', debounce(() => {
             const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -749,292 +636,92 @@ function debounce(func, wait) {
             progressBar.style.width = scrolled + '%';
         }, 10));
     }
-
-    initScrollProgress();
-
-    // ==========================================
-    // SAVE SCROLL POSITION
-    // ==========================================
-    function initScrollMemory() {
-        // Sauvegarder la position de scroll avant de quitter
-        window.addEventListener('beforeunload', () => {
-            sessionStorage.setItem('scrollPosition', window.pageYOffset);
-        });
-        
-        // Restaurer la position au chargement
-        const savedPosition = sessionStorage.getItem('scrollPosition');
-        if (savedPosition) {
-            setTimeout(() => {
-                window.scrollTo(0, parseInt(savedPosition));
-                sessionStorage.removeItem('scrollPosition');
-            }, 100);
-        }
-    }
-
-    initScrollMemory();
-
-    // ==========================================
-    // PRELOADER (optionnel)
-    // ==========================================
-    function initPreloader() {
-        const preloader = document.querySelector('.preloader');
-        
-        if (preloader) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    preloader.style.opacity = '0';
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                    }, 300);
-                }, 500);
-            });
-        }
-    }
-
-    initPreloader();
-
-    // ==========================================
-    // COPY TO CLIPBOARD
-    // ==========================================
-    function initCopyButtons() {
-        const copyButtons = document.querySelectorAll('[data-copy]');
-        
-        copyButtons.forEach(button => {
-            button.addEventListener('click', async function() {
-                const textToCopy = this.getAttribute('data-copy');
-                
-                try {
-                    await navigator.clipboard.writeText(textToCopy);
-                    
-                    const originalText = this.textContent;
-                    this.textContent = 'âœ… CopiÃ© !';
-                    this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                    
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                        this.style.background = '';
-                    }, 2000);
-                } catch (err) {
-                    console.error('Erreur de copie:', err);
-                }
-            });
-        });
-    }
-
-    initCopyButtons();
-
-    // ==========================================
-    // TOOLTIP SYSTEM
-    // ==========================================
-    function initTooltips() {
-        const tooltipElements = document.querySelectorAll('[data-tooltip]');
-        
-        tooltipElements.forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                const tooltip = this.getAttribute('data-tooltip');
-                if (!tooltip) return;
-                
-                const tooltipEl = document.createElement('div');
-                tooltipEl.className = 'custom-tooltip';
-                tooltipEl.textContent = tooltip;
-                tooltipEl.style.cssText = `
-                    position: absolute;
-                    background: rgb(2 6 23 / 95%);
-                    color: white;
-                    padding: 0.5rem 1rem;
-                    border-radius: 0.5rem;
-                    font-size: 0.85rem;
-                    white-space: nowrap;
-                    z-index: 10000;
-                    pointer-events: none;
-                    border: 1px solid var(--border-glow);
-                `;
-                
-                document.body.appendChild(tooltipEl);
-                
-                const rect = this.getBoundingClientRect();
-                tooltipEl.style.top = (rect.top - tooltipEl.offsetHeight - 8) + 'px';
-                tooltipEl.style.left = (rect.left + rect.width / 2 - tooltipEl.offsetWidth / 2) + 'px';
-                
-                this._tooltip = tooltipEl;
-            });
-            
-            element.addEventListener('mouseleave', function() {
-                if (this._tooltip) {
-                    this._tooltip.remove();
-                    delete this._tooltip;
-                }
-            });
-        });
-    }
-
-    initTooltips();
-
-    // ==========================================
-    // KEYBOARD NAVIGATION
-    // ==========================================
-    function initKeyboardNav() {
-        document.addEventListener('keydown', (e) => {
-            // ESC pour fermer le menu mobile
-            if (e.key === 'Escape') {
-                const navLinks = document.querySelector('.nav-links');
-                if (navLinks && navLinks.classList.contains('mobile-open')) {
-                    navLinks.classList.remove('mobile-open');
-                }
-            }
-            
-            // Ctrl/Cmd + K pour focus sur recherche (si existe)
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                const searchInput = document.querySelector('input[type="search"]');
-                if (searchInput) {
-                    searchInput.focus();
-                }
-            }
-        });
-    }
-
-    initKeyboardNav();
-
+    
     // ==========================================
     // IMAGE ERROR HANDLING
     // ==========================================
+    
     function initImageErrorHandling() {
         const images = document.querySelectorAll('img');
         
         images.forEach(img => {
             img.addEventListener('error', function() {
-                this.style.background = 'linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1))';
+                this.style.background = 'linear-gradient(135deg, rgb(6 182 212 / 10%), rgb(139 92 246 / 10%))';
                 this.style.display = 'flex';
                 this.style.alignItems = 'center';
                 this.style.justifyContent = 'center';
                 this.style.minHeight = '200px';
-                this.alt = 'ðŸ–¼ï¸ Image non disponible';
+                this.alt = 'Image non disponible';
             });
         });
     }
-
-    initImageErrorHandling();
-
+    
     // ==========================================
-    // ANALYTICS (optionnel)
+    // KEYBOARD NAVIGATION
     // ==========================================
-    function initAnalytics() {
-        // Ã€ implÃ©menter selon vos besoins (Google Analytics, etc.)
-        console.log('ðŸ“Š Analytics initialisÃ©');
+    
+    function initKeyboardNav() {
+        document.addEventListener('keydown', (e) => {
+            // ESC pour fermer le menu mobile
+            if (e.key === 'Escape') {
+                const navLinks = document.querySelector('.nav-links');
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                if (navLinks && navLinks.classList.contains('mobile-open')) {
+                    navLinks.classList.remove('mobile-open');
+                    if (mobileToggle) mobileToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
     }
-
-    initAnalytics();
-
-    // ==========================================
-    // CONSOLE EASTER EGG
-    // ==========================================
-    console.log('%cðŸš€ Portfolio Kweneth KIKHOUNGA', 'font-size: 20px; font-weight: bold; color: #06b6d4;');
-    console.log('%cIngÃ©nieur RF & TÃ©lÃ©communications', 'font-size: 14px; color: #8b5cf6;');
-    console.log('%cMerci de visiter mon portfolio !', 'font-size: 12px; color: #94a3b8;');
-    console.log('%c\nVous cherchez Ã  collaborer ? ðŸ‘‰ kwenethl@gmail.com', 'font-size: 12px; color: #f97316;');
     
     // ==========================================
-    // LOG FINAL
+    // CONSOLE MESSAGE
     // ==========================================
-    console.log('âœ… Toutes les fonctionnalitÃ©s initialisÃ©es avec succÃ¨s');
-});
-
-// ==========================================
-// UTILITY FUNCTIONS
-// ==========================================
-
-// Fonction debounce pour optimiser les performances
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Fonction throttle
-function throttle(func, delay) {
-    let lastCall = 0;
-    return function(...args) {
-        const now = Date.now();
-        if (now - lastCall >= delay) {
-            lastCall = now;
-            return func(...args);
-        }
-    };
-}
-
-// VÃ©rifier si un Ã©lÃ©ment est visible
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// GÃ©nÃ©rer un ID unique
-function generateUniqueId() {
-    return 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-}
-
-// Format date
-function formatDate(date) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(date).toLocaleDateString('fr-FR', options);
-}
-
-// Smooth reveal pour sections
-function revealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal');
     
-    reveals.forEach(reveal => {
-        const windowHeight = window.innerHeight;
-        const revealTop = reveal.getBoundingClientRect().top;
-        const revealPoint = 100;
+    function showConsoleMessage() {
+        console.log('%c🛠️ Portfolio Kweneth KIKHOUNGA', 'font-size: 20px; font-weight: bold; color: #06b6d4;');
+        console.log('%cIngénieur RF & Télécommunications', 'font-size: 14px; color: #8b5cf6;');
+        console.log('%cMerci de visiter mon portfolio !', 'font-size: 12px; color: #94a3b8;');
+        console.log('%c\nVous cherchez à collaborer ? 📨 kwenethl@gmail.com', 'font-size: 12px; color: #f97316;');
+    }
+    
+    // ==========================================
+    // INITIALISATION PRINCIPALE
+    // ==========================================
+    
+    function init() {
+        console.log('🛠️ Initialisation du portfolio...');
         
-        if (revealTop < windowHeight - revealPoint) {
-            reveal.classList.add('active');
-        }
-    });
-}
-
-window.addEventListener('scroll', debounce(revealOnScroll, 50));
-
-// Export des fonctions utilitaires
-window.PortfolioUtils = {
-    debounce,
-    throttle,
-    isElementInViewport,
-    generateUniqueId,
-    formatDate
-};
-
-// ==========================================
-// PREFERENCE REDUCED MOTION
-// ==========================================
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-if (prefersReducedMotion.matches) {
-    document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-    console.log('ðŸ›‘ Mode accessibilitÃ© : animations rÃ©duites');
-}
-
-// ==========================================
-// SERVICE WORKER (optionnel - PWA)
-// ==========================================
-if ('serviceWorker' in navigator) {
-    // DÃ©sactivÃ© par dÃ©faut
-    // navigator.serviceWorker.register('/sw.js');
-}
-
-// ==========================================
-// FIN DU FICHIER
-// ==========================================
+        // Fonctions essentielles (toujours actives)
+        initSmoothScroll();
+        initHeaderScroll();
+        initMobileMenu();
+        initScrollToTop();
+        initScrollProgress();
+        initImageErrorHandling();
+        initKeyboardNav();
+        initAnimations();
+        
+        // Fonctions conditionnelles (selon la page)
+        initCVTabs();
+        initProjectGallery();
+        initActiveNavigation();
+        initLanguageBars();
+        initStatsCounter();
+        initContactForm();
+        
+        // Message console
+        showConsoleMessage();
+        
+        console.log('✅ Portfolio initialisé avec succès !');
+    }
+    
+    // Lancer l'initialisation
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+})();
