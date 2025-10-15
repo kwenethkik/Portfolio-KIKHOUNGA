@@ -898,6 +898,8 @@ section > p {
     font-size: 2.5rem;
     font-weight: 900;
     margin-bottom: 0.5rem;
+    text-align: left !important;
+
 }
 
 .project-subtitle {
@@ -1185,33 +1187,6 @@ section > p {
 
 .nav-btn:hover {
     animation: none;
-}
-
-@media (max-width: 768px) {
-    .nav-btn {
-        width: 50px !important;
-        height: 50px !important;
-        font-size: 1.25rem !important;
-    }
-    
-    .nav-btn i {
-        font-size: 1.25rem;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .nav-btn {
-        border-color: rgba(0, 0, 0, 0.1) !important;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
-    }
-    
-    .nav-btn:hover {
-        box-shadow: 0 12px 32px rgba(8, 145, 178, 0.3) !important;
-    }
-    
-    .scroll-to-top {
-        border: 2px solid rgba(0, 0, 0, 0.1);
-    }
 }
 
 /* ==========================================
@@ -2345,10 +2320,19 @@ section > p {
     }
 
     .project-card {
-        grid-template-columns: 1fr;
         display: flex !important;
         flex-direction: column !important;
         grid-template-columns: unset !important;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .project-info {
+        order: 1;
+    }
+    
+    .project-visuals {
+        order: 2;
     }
     
     .contact-layout {
@@ -2366,14 +2350,7 @@ section > p {
     .hero-image {
         max-width: 250px; /* Encore plus petite sur très petit écran */
     }
-}
-@media (max-width: 480px) {
-    .hero-image {
-        max-width: 200px; /* Taille minimale pour mobile */
-    }
-}
-
-@media (max-width: 768px) {
+    
     nav {
         padding: 1rem;
     }
@@ -2420,9 +2397,60 @@ section > p {
     .travel-stats {
         gap: 2rem;
     }
+    
+    .project-card {
+        padding: 1.5rem !important;
+        margin-bottom: 2rem;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .project-info {
+        order: 1 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .project-visuals {
+        order: 2 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .project-stats {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.75rem;
+    }
+    
+    .project-links {
+        flex-direction: column !important;
+    }
+    
+    .project-link {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    .nav-btn {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.25rem !important;
+    }
+    
+    .nav-btn i {
+        font-size: 1.25rem;
+    }
+    
+    .thumbnail-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
 }
 
 @media (max-width: 480px) {
+    .hero-image {
+        max-width: 200px; /* Taille minimale pour mobile */
+    }
+    
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
     
@@ -2457,6 +2485,36 @@ section > p {
     
     .contact-form .form-row {
         grid-template-columns: 1fr;
+    }
+    
+    .project-card {
+        padding: 1rem !important;
+    }
+    
+    .project-stats {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    
+    .project-number {
+        font-size: 3rem !important;
+    }
+    
+    .project-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .project-description {
+        font-size: 0.95rem !important;
+    }
+    
+    .project-tech {
+        gap: 0.5rem !important;
+    }
+    
+    .tech-tag {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.8rem !important;
     }
 }
 
@@ -2816,7 +2874,6 @@ footer .social-links {
 /* make sure arrows are visible on small screens */
 @media (max-width:768px){
   .nav-btn{ width:48px !important; height:48px !important; font-size:1rem !important; }
-  .thumbnail-grid { grid-template-columns: repeat(2,1fr); gap:0.5rem; }
 }
 
 /* ensure main-image is responsive */
@@ -3014,7 +3071,7 @@ footer .social-links {
         border-color: var(--primary-bg) !important;
     }
     
-    /* Cards gÃ©nÃ©riques - fix mode clair */
+    /* Cards génériques - fix mode clair */
     .card:hover {
         background: rgb(255 255 255 / 100%) !important;
     }
@@ -3161,6 +3218,32 @@ footer .social-links {
         background: rgb(255 255 255 / 100%) !important;
         box-shadow: var(--shadow-lg);
     }
+    
+    .nav-btn {
+        border-color: rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0.4) !important;
+    }
+    
+    @keyframes pulse-arrow {
+        0% {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0.7);
+        }
+        50% {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(8, 145, 178, 0);
+        }
+        100% {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0);
+        }
+    }
+    
+    .nav-btn:hover {
+        box-shadow: 0 12px 40px rgba(8, 145, 178, 0.4) !important;
+        border-color: #f97316 !important;
+    }
+    
+    .scroll-to-top {
+        border: 2px solid rgba(0, 0, 0, 0.1);
+    }
 }
 
 
@@ -3224,32 +3307,6 @@ footer .social-links {
     }
 }
 
-/* Mode clair */
-@media (prefers-color-scheme: light) {
-    .nav-btn {
-        border-color: rgba(0, 0, 0, 0.2) !important;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0.4) !important;
-    }
-    
-    @keyframes pulse-arrow {
-        0% {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0.7);
-        }
-        50% {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(8, 145, 178, 0);
-        }
-        100% {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(8, 145, 178, 0);
-        }
-    }
-    
-    .nav-btn:hover {
-        box-shadow: 0 12px 40px rgba(8, 145, 178, 0.4) !important;
-        border-color: #f97316 !important;
-    }
-}
-
-/* FIN DES AMÉLIORATIONS */
 /* ==========================================
    FIN DU FICHIER
    ========================================== */
