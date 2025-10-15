@@ -2330,11 +2330,6 @@ section > p {
    RESPONSIVE DESIGN
    ========================================== */
 @media (max-width: 1024px) {
-    .destination-card.featured {
-        grid-column: span 1;
-    }
-}
-@media (max-width: 1024px) {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -2359,6 +2354,9 @@ section > p {
     
     .availability-section {
         grid-template-columns: 1fr;
+    }
+    .destination-card.featured {
+        grid-column: span 1;
     }
 }
 @media (max-width: 768px) {
