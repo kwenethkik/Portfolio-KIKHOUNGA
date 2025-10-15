@@ -2346,6 +2346,9 @@ section > p {
 
     .project-card {
         grid-template-columns: 1fr;
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: unset !important;
     }
     
     .contact-layout {
