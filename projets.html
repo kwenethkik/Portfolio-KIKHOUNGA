@@ -36,317 +36,354 @@
         <section class="projects-hero">
             <div class="container">
                 <h1>Mes Projets</h1>
-                <p>Découvrez mes réalisations en télécommunications, hyperfréquences et gestion de projets techniques. Chaque projet reflète mon engagement pour l'innovation et l'excellence technique.</p>
+                <p>Découvrez mes réalisations en télécommunications, hyperfréquences, photonique et gestion de projets techniques. Chaque projet reflète mon engagement pour l'innovation et l'excellence technique.</p>
             </div>
         </section>
 
-        <!-- Projects Grid -->
-        <section class="projects-grid">
+        <!-- Main Navigation -->
+        <section class="cv-navigation">
             <div class="container">
+                <div class="nav-tabs">
+                    <button class="tab-btn active" data-tab="projets-pro">
+                        <i class="fas fa-briefcase"></i>
+                        PROJETS PROFESSIONNELS
+                    </button>
+                    <button class="tab-btn" data-tab="projets-acad">
+                        <i class="fas fa-graduation-cap"></i>
+                        PROJETS TECHNIQUES ACADÉMIQUES
+                    </button>
+                </div>
+            </div>
+        </section>
 
-                <!-- Projet 1 -->
+        <section class="cv-content">
+            <div class="container">
+                <!-- PROJETS PROFESSIONNELS -->
+                <div id="projets-pro" class="tab-content active">
+                    <section class="projects-grid">
+                        <!-- Projet 1 -->
+                        <article class="project-card">
+                            <div class="project-info">
+                                <div class="project-number">01</div>
+                                <h2 class="project-title">Modélisation Ray Tracing 3D</h2>
+                                <p class="project-subtitle">Propagation Radio en Milieu Urbain</p>
+                                <div class="project-role">
+                                    <i class="fas fa-wave-square"></i>
+                                    Ingénieur Modélisation Radio
+                                </div>
+                                <p class="project-description">
+                                    Modélisation des phénomènes de propagation en milieu urbain dense sous MATLAB. 
+                                    Analyse Ray Tracing 3D à 23 GHz avec calcul d'atténuation et optimisation d'implantation d'antennes.
+                                </p>
+
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">🌆</span> Environnement</div>
+                                        <div class="stat-value">Urbain dense</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">📡</span> Fréquence</div>
+                                        <div class="stat-value">23 GHz</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">📊</span> KPI</div>
+                                        <div class="stat-value">Zones d'ombre anticipées</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">🎯</span> Précision</div>
+                                        <div class="stat-value">LoS + multi-trajets</div>
+                                    </div>
+                                </div>
+
+                                <div class="project-tech">
+                                    <span class="tech-tag">MATLAB</span>
+                                    <span class="tech-tag">Ray Tracing 3D</span>
+                                    <span class="tech-tag">Propagation EM</span>
+                                    <span class="tech-tag">Python</span>
+                                </div>
+
+                                <div class="project-date">02/2025 - 08/2025</div>
+
+                                <div class="project-links">
+                                    <a href="CodeMatlab.txt" class="project-link secondary">
+                                        <i class="fab fa-github"></i>
+                                        Code MATLAB
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-visuals">
+                                <div class="main-image">
+                                    <img src="Image_Projets/modelcomplet.jpg" alt="Ray Tracing">
+                                </div>
+                                <div class="thumbnail-grid">
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/cartho.jpg" alt="Thumbnail 1">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/Recap.png" alt="Thumbnail 2">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/image copy.png" alt="Thumbnail 3">
+                                    </div>
+                                </div>
+                                <div class="nav-buttons">
+                                    <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Projet 2 -->
+                        <article class="project-card">
+                            <div class="project-info">
+                                <div class="project-number">02</div>
+                                <h2 class="project-title">Antenne Cassegrain bi-bande 5G</h2>
+                                <p class="project-subtitle">Conception et simulation Hyperfréquences 23/80 GHz</p>
+                                <div class="project-role">
+                                    <i class="fas fa-broadcast-tower"></i>
+                                    Ingénierie RF & Hyperfréquences
+                                </div>
+                                <p class="project-description">
+                                    Conception et optimisation d'une antenne Cassegrain bi-bande pour liaisons faisceaux hertziens. 
+                                    Implémentation de Carrier Aggregation et simulations électromagnétiques sous CST Studio Suite.
+                                </p>
+
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">📡</span> Fréquences</div>
+                                        <div class="stat-value">23 GHz / 80 GHz</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">🎯</span> Gain</div>
+                                        <div class="stat-value">Haute directivité</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">⚡</span> Efficacité</div>
+                                        <div class="stat-value">Faible perte retour</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">🔗</span> Carrier Agg.</div>
+                                        <div class="stat-value">Bandes K et E</div>
+                                    </div>
+                                </div>
+
+                                <div class="project-tech">
+                                    <span class="tech-tag">CST Studio Suite</span>
+                                    <span class="tech-tag">MATLAB</span>
+                                    <span class="tech-tag">Hyperfréquences</span>
+                                    <span class="tech-tag">Cassegrain</span>
+                                    <span class="tech-tag">5G</span>
+                                </div>
+
+                                <div class="project-date">09/2024 - 02/2025</div>
+
+                                <div class="project-links">
+                                    <a href="KIKHOUNGA_Kweneth_projet_PHYS_2024_25.pdf" class="project-link">
+                                        <i class="fas fa-file-pdf"></i>
+                                        Rapport technique
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-visuals">
+                                <div class="main-image">
+                                    <img src="Image_Projets/para_wave.png" alt="Antenne">
+                                </div>
+                                <div class="thumbnail-grid">
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/3Df(80)Port1.png" alt="Thumbnail 1">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/diagrammeRay_f(23)_Port1.png" alt="Thumbnail 2">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/IMG_9702.jpg" alt="Thumbnail 3">
+                                    </div>
+                                </div>
+                                <div class="nav-buttons">
+                                    <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Projet 3 -->
+                        <article class="project-card">
+                            <div class="project-info">
+                                <div class="project-number">03</div>
+                                <h2 class="project-title">Déploiement du réseau 5G avec Faisceaux hertziens</h2>
+                                <p class="project-subtitle">Projet Télécommunications Orange</p>
+                                <div class="project-role">
+                                    <i class="fas fa-wave-square"></i>
+                                    Chef de Projet Télécoms
+                                </div>
+                                <p class="project-description">
+                                    Conception, simulation et optimisation des liaisons radio 5G (23/80 GHz) avec ATOLL et Séria. 
+                                    Coordination d'équipes multidisciplinaires et suivi selon la méthodologie Agile pour le déploiement réseau.
+                                </p>
+
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">📡</span> Sites déployés</div>
+                                        <div class="stat-value">105+ sites optimisés</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">📊</span> Performance</div>
+                                        <div class="stat-value">Débit QoS amélioré</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">⚙️</span> Fréquences</div>
+                                        <div class="stat-value">23/80 GHz bi-bande</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">✅</span> Conformité</div>
+                                        <div class="stat-value">Normes UIT respectées</div>
+                                    </div>
+                                </div>
+
+                                <div class="project-tech">
+                                    <span class="tech-tag">ATOLL</span>
+                                    <span class="tech-tag">Séria</span>
+                                    <span class="tech-tag">5G</span>
+                                    <span class="tech-tag">Faisceaux Hertziens</span>
+                                    <span class="tech-tag">Agile</span>
+                                    <span class="tech-tag">4096-QAM</span>
+                                </div>
+
+                                <div class="project-date">09/2023 - 08/2025</div>
+
+                                <div class="project-links">
+                                    <a href="Rapport_KIKHOUNGA_Kweneth_PHYS.pdf" class="project-link">
+                                        <i class="fas fa-file-pdf"></i>
+                                        Documentation
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-visuals">
+                                <div class="main-image">
+                                    <img src="Image_Projets/image ATOLL.png" alt="5G Network">
+                                </div>
+                                <div class="thumbnail-grid">
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/image.png" alt="Thumbnail 1">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/image BL.png" alt="Thumbnail 2">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="Image_Projets/image3.png" alt="Thumbnail 3">
+                                    </div>
+                                </div>
+                                <div class="nav-buttons">
+                                    <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Projet 4 -->
+                        <article class="project-card">
+                            <div class="project-info">
+                                <div class="project-number">04</div>
+                                <h2 class="project-title">Industrialisation du processus de démontage</h2>
+                                <p class="project-subtitle">Optimisation processus d'équipements FH obsolètes</p>
+                                <div class="project-role">
+                                    <i class="fas fa-wave-square"></i>
+                                    Chef de Projet IT & Management Agile
+                                </div>
+                                <p class="project-description">
+                                    Industrialisation du processus de démontage des équipements Faisceaux Hertziens obsolètes chez Orange France. 
+                                    Mise en place d'une méthodologie Agile/Scrum combinée au Lean Management pour optimiser les gains financiers (OPEX) 
+                                    et environnementaux (RSE). Réduction de l'empreinte carbone et standardisation des processus inter-régionaux.
+                                </p>
+
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">📦</span> Équipements</div>
+                                        <div class="stat-value">105 sites démontés (2024)</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">💰</span> Économies OPEX</div>
+                                        <div class="stat-value">528 000 € économisés/an</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">🌱</span> Impact RSE</div>
+                                        <div class="stat-value">7,35 tonnes CO₂ évitées</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label"><span class="stat-icon">⚡</span> Énergie</div>
+                                        <div class="stat-value">53 039 kWh/an économisés</div>
+                                    </div>
+                                </div>
+
+                                <div class="project-tech">
+                                    <span class="tech-tag">Agile/Scrum</span>
+                                    <span class="tech-tag">Lean Management</span>
+                                    <span class="tech-tag">RSE</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Power BI</span>
+                                    <span class="tech-tag">Excel</span>
+                                    <span class="tech-tag">SharePoint</span>
+                                </div>
+
+                                <div class="project-date">09/2024 - 08/2025</div>
+
+                                <div class="project-links">
+                                    <a href="Rapport_Management_KIKHOUNGA.pdf" class="project-link">
+                                        <i class="fas fa-file-pdf"></i>
+                                        Mémoire Management
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-visuals">
+                                <div class="main-image">
+                                    <img src="managmenet/sharePoint.png" alt="Industrialisation Orange">
+                                </div>
+                                <div class="thumbnail-grid">
+                                    <div class="thumbnail">
+                                        <img src="managmenet/kaban.png" alt="Méthodologie Scrum">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="managmenet/fiche.png" alt="Fiche standardisée">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="managmenet/rse.png" alt="Impact RSE">
+                                    </div>
+                                </div>
+                                <div class="nav-buttons">
+                                    <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+
+                <!-- PROJETS TECHNIQUES ACADÉMIQUES -->
+                <div id="projets-acad" class="tab-content">
+                    <!-- Sub Navigation -->
+                    <div class="sub-nav-tabs">
+                        <button class="sub-tab-btn active" data-subtab="rf-hyperfrequences">
+                            <i class="fas fa-satellite-dish"></i>
+                            RF & HYPERFRÉQUENCES
+                        </button>
+                        <button class="sub-tab-btn" data-subtab="photonique">
+                            <i class="fas fa-lightbulb"></i>
+                            PHOTONIQUE
+                        </button>
+                    </div>
+
+                    <!-- RF & HYPERFRÉQUENCES -->
+                    <div id="rf-hyperfrequences" class="sub-content active">
+                        <section class="projects-grid">
+                            
+                            <!-- Projet 1 : RADAR et Antennes -->
                 <article class="project-card">
                     <div class="project-info">
                         <div class="project-number">01</div>
-                        <h2 class="project-title">Modélisation Ray Tracing 3D</h2>
-                        <p class="project-subtitle">Propagation Radio en Milieu Urbain</p>
-                        <div class="project-role">
-                            <i class="fas fa-wave-square"></i>
-                            Ingénieur Modélisation RF
-                        </div>
-                        <p class="project-description">
-                            Modélisation des phénomènes de propagation en milieu urbain dense sous MATLAB. 
-                            Analyse Ray Tracing 3D à 23 GHz avec calcul d'atténuation et optimisation d'implantation d'antennes.
-                        </p>
-
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">🌆</span> Environnement</div>
-                                <div class="stat-value">Urbain dense</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">📡</span> Fréquence</div>
-                                <div class="stat-value">23 GHz</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">📊</span> KPI</div>
-                                <div class="stat-value">Zones d'ombre anticipées</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">🎯</span> Précision</div>
-                                <div class="stat-value">LoS + multi-trajets</div>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">MATLAB</span>
-                            <span class="tech-tag">Ray Tracing 3D</span>
-                            <span class="tech-tag">Propagation EM</span>
-                            <span class="tech-tag">Python</span>
-                        </div>
-
-                        <div class="project-date">02/2025 - 08/2025</div>
-
-                        <div class="project-links">
-                            <a href="CodeMatlab.txt" class="project-link secondary">
-                                <i class="fab fa-github"></i>
-                                Code MATLAB
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-visuals">
-                        <div class="main-image">
-                            <img src="Image_Projets/modelcomplet.jpg" alt="Ray Tracing">
-                        </div>
-                        <div class="thumbnail-grid">
-                            <div class="thumbnail">
-                                <img src="Image_Projets/cartho.jpg" alt="Thumbnail 1">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="Image_Projets/Recap.png" alt="Thumbnail 2">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="Image_Projets/image copy.png" alt="Thumbnail 3">
-                            </div>
-                        </div>
-                        <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Projet 2 -->
-                <article class="project-card">
-                    <div class="project-info">
-                        <div class="project-number">02</div>
-                        <h2 class="project-title">Antenne Cassegrain bi-bande 5G</h2>
-                        <p class="project-subtitle">Conception Hyperfréquences 23/80 GHz</p>
-                        <div class="project-role">
-                            <i class="fas fa-broadcast-tower"></i>
-                            Ingénieur RF & Hyperfréquences
-                        </div>
-                        <p class="project-description">
-                            Conception et optimisation d'une antenne Cassegrain bi-bande pour liaisons faisceaux hertziens. 
-                            Implémentation de Carrier Aggregation et simulations électromagnétiques sous CST Studio Suite.
-                        </p>
-
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">📡</span> Fréquences</div>
-                                <div class="stat-value">23 GHz / 80 GHz</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">🎯</span> Gain</div>
-                                <div class="stat-value">Haute directivité</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">⚡</span> Efficacité</div>
-                                <div class="stat-value">Faible perte retour</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">🔗</span> Carrier Agg.</div>
-                                <div class="stat-value">Bandes K et E</div>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">CST Studio Suite</span>
-                            <span class="tech-tag">MATLAB</span>
-                            <span class="tech-tag">Hyperfréquences</span>
-                            <span class="tech-tag">Cassegrain</span>
-                            <span class="tech-tag">5G</span>
-                        </div>
-
-                        <div class="project-date">09/2024 - 02/2025</div>
-
-                        <div class="project-links">
-                            <a href="KIKHOUNGA_Kweneth_projet_PHYS_2024_25.pdf" class="project-link">
-                                <i class="fas fa-file-pdf"></i>
-                                Rapport technique
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-visuals">
-                        <div class="main-image">
-                            <img src="Image_Projets/para_wave.png" alt="Antenne">
-                        </div>
-                        <div class="thumbnail-grid">
-                            <div class="thumbnail">
-                                <img src="Image_Projets/3Df(80)Port1.png" alt="Thumbnail 1">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="Image_Projets/diagrammeRay_f(23)_Port1.png" alt="Thumbnail 2">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="Image_Projets/IMG_9702.jpg" alt="Thumbnail 3">
-                            </div>
-                        </div>
-                        <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Projet 3 -->
-                <article class="project-card">
-                    <div class="project-info">
-                        <div class="project-number">03</div>
-                        <h2 class="project-title">Déploiement du réseau 5G avec Faisceau Hertzien</h2>
-                        <p class="project-subtitle">Projet Télécommunications Orange</p>
-                        <div class="project-role">
-                            <i class="fas fa-signal"></i>
-                            Chef de Projet Télécoms
-                        </div>
-                        <p class="project-description">
-                            Conception, simulation et optimisation des liaisons radio 5G (23/80 GHz) avec ATOLL et Séria. 
-                            Coordination d'équipes multidisciplinaires et suivi selon la méthodologie Agile pour le déploiement réseau.
-                        </p>
-
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">📡</span> Sites déployés</div>
-                                <div class="stat-value">105+ sites optimisés</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">📊</span> Performance</div>
-                                <div class="stat-value">Débit QoS amélioré</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">⚙️</span> Fréquences</div>
-                                <div class="stat-value">23/80 GHz bi-bande</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">✅</span> Conformité</div>
-                                <div class="stat-value">Normes UIT respectées</div>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">ATOLL</span>
-                            <span class="tech-tag">Séria</span>
-                            <span class="tech-tag">5G</span>
-                            <span class="tech-tag">Faisceaux Hertziens</span>
-                            <span class="tech-tag">Agile</span>
-                            <span class="tech-tag">4096-QAM</span>
-                        </div>
-
-                        <div class="project-date">09/2023 - 08/2025</div>
-
-                        <div class="project-links">
-                            <a href="Rapport_KIKHOUNGA_Kweneth_PHYS.pdf" class="project-link">
-                                <i class="fas fa-file-pdf"></i>
-                                Documentation
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-visuals">
-                        <div class="main-image">
-                            <img src="Image_Projets/image ATOLL.png" alt="5G Network">
-                        </div>
-                        <div class="thumbnail-grid">
-                            <div class="thumbnail">
-                                <img src="Image_Projets/image.png" alt="Thumbnail 1">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="Image_Projets/image BL.png" alt="Thumbnail 2">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="Image_Projets/image3.png" alt="Thumbnail 3">
-                            </div>
-                        </div>
-                        <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Projet 4 -->
-                <article class="project-card">
-                    <div class="project-info">
-                        <div class="project-number">04</div>
-                        <h2 class="project-title">Industrialisation du processus de démontage</h2>
-                        <p class="project-subtitle">Optimisation des déposes d'équipements FH obsolètes</p>
-                        <div class="project-role">
-                            <i class="fas fa-user-tie"></i>
-                            Chef de Projet IT & Management Agile
-                        </div>
-                        <p class="project-description">
-                            Industrialisation du processus de démontage des équipements Faisceaux Hertziens obsolètes chez Orange France. 
-                            Mise en place d'une méthodologie Agile/Scrum combinée au Lean Management pour optimiser les gains financiers (OPEX) 
-                            et environnementaux (RSE). Réduction de l'empreinte carbone et standardisation des processus inter-régionaux.
-                        </p>
-
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">📦</span> Équipements</div>
-                                <div class="stat-value">105 sites démontés (2024)</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">💰</span> Économies OPEX</div>
-                                <div class="stat-value">528 000 € économisés/an</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">🌱</span> Impact RSE</div>
-                                <div class="stat-value">7,35 tonnes CO₂ évitées</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label"><span class="stat-icon">⚡</span> Énergie</div>
-                                <div class="stat-value">53 039 kWh/an économisés</div>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">Agile/Scrum</span>
-                            <span class="tech-tag">Lean Management</span>
-                            <span class="tech-tag">RSE</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">Excel VBA</span>
-                            <span class="tech-tag">SharePoint</span>
-                        </div>
-
-                        <div class="project-date">09/2023 - 08/2025</div>
-
-                        <div class="project-links">
-                            <a href="Rapport_Management_KIKHOUNGA.pdf" class="project-link">
-                                <i class="fas fa-file-pdf"></i>
-                                Mémoire Management
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-visuals">
-                        <div class="main-image">
-                            <img src="managmenet/sharePoint.png" alt="Industrialisation Orange">
-                        </div>
-                        <div class="thumbnail-grid">
-                            <div class="thumbnail">
-                                <img src="managmenet/kaban.png" alt="Méthodologie Scrum">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="managmenet/fiche.png" alt="Fiche standardisée">
-                            </div>
-                            <div class="thumbnail">
-                                <img src="managmenet/rse.png" alt="Impact RSE">
-                            </div>
-                        </div>
-                        <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Projet 5 : RADAR et Antennes -->
-                <article class="project-card">
-                    <div class="project-info">
-                        <div class="project-number">05</div>
                         <h2 class="project-title">Systèmes RADAR et Caractérisation d'Antennes</h2>
                         <p class="project-subtitle">Mesures hyperfréquences et calculs de performance</p>
                         <div class="project-role">
@@ -407,16 +444,16 @@
                             </div>
                         </div>
                         <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                            <div class="nav-btn"><i class="fas fa-chevron-left"></i></div>
+                            <div class="nav-btn"><i class="fas fa-chevron-right"></i></div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Projet 6 : Front-End RF -->
+                <!-- Projet 2 : Front-End RF -->
                 <article class="project-card">
                     <div class="project-info">
-                        <div class="project-number">06</div>
+                        <div class="project-number">02</div>
                         <h2 class="project-title">Analyse Front-End RF et Non-linéarités</h2>
                         <p class="project-subtitle">Caractérisation de chaînes de réception hyperfréquences</p>
                         <div class="project-role">
@@ -477,16 +514,16 @@
                             </div>
                         </div>
                         <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                            <div class="nav-btn"><i class="fas fa-chevron-left"></i></div>
+                            <div class="nav-btn"><i class="fas fa-chevron-right"></i></div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Projet 7 : CEM -->
+                <!-- Projet 3 : CEM -->
                 <article class="project-card">
                     <div class="project-info">
-                        <div class="project-number">07</div>
+                        <div class="project-number">03</div>
                         <h2 class="project-title">CEM - Compatibilité Électromagnétique</h2>
                         <p class="project-subtitle">Couplage et diaphonie dans les circuits électroniques</p>
                         <div class="project-role">
@@ -515,7 +552,7 @@
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label"><span class="stat-icon">⚡</span> Blindage</div>
-                                <div class="stat-value">&gt;-30 dB atténuation</div>
+                                <div class="stat-value"> &gt; -30 dB atténuation</div>
                             </div>
                         </div>
 
@@ -547,16 +584,16 @@
                             </div>
                         </div>
                         <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                            <div class="nav-btn"><i class="fas fa-chevron-left"></i></div>
+                            <div class="nav-btn"><i class="fas fa-chevron-right"></i></div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Projet 8 : Circulateurs -->
+                <!-- Projet 4 : Circulateurs -->
                 <article class="project-card">
                     <div class="project-info">
-                        <div class="project-number">08</div>
+                        <div class="project-number">04</div>
                         <h2 class="project-title">Caractérisation de Circulateurs RF</h2>
                         <p class="project-subtitle">Mesures de paramètres S et adaptation d'impédance</p>
                         <div class="project-role">
@@ -617,16 +654,16 @@
                             </div>
                         </div>
                         <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                            <div class="nav-btn"><i class="fas fa-chevron-left"></i></div>
+                            <div class="nav-btn"><i class="fas fa-chevron-right"></i></div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Projet 9 : RFID -->
+                <!-- Projet 5 : RFID -->
                 <article class="project-card">
                     <div class="project-info">
-                        <div class="project-number">09</div>
+                        <div class="project-number">05</div>
                         <h2 class="project-title">Transmission sans Fil - Systèmes RFID</h2>
                         <p class="project-subtitle">Modulations ASK/FSK et protocoles ISO 14443</p>
                         <div class="project-role">
@@ -687,11 +724,303 @@
                             </div>
                         </div>
                         <div class="nav-buttons">
-                            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-                            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                            <div class="nav-btn"><i class="fas fa-chevron-left"></i></div>
+                            <div class="nav-btn"><i class="fas fa-chevron-right"></i></div>
                         </div>
                     </div>
                 </article>
+                        </section>
+                    </div>
+
+                    <!-- PHOTONIQUE -->
+                    <div id="photonique" class="sub-content">
+                        <section class="projects-grid"></section>
+
+                            <!-- Projet Photonique 1 : Laser à Fibre Dopée Erbium -->
+                            <article class="project-card">
+                                <div class="project-info">
+                                    <div class="project-number">01</div>
+                                        <h2 class="project-title">Laser à Fibre Dopée Erbium</h2>
+                                        <p class="project-subtitle">Conception et caractérisation de cavités laser</p>
+                                    <div class="project-role">
+                                        <i class="fas fa-broadcast-tower"></i>
+                                            Ingénieur Photonique - Lasers
+                                    </div>
+                                        <p class="project-description">
+                                            Réalisation et étude complète de lasers à fibre dopée erbium en configurations linéaire et anneau. 
+                                            Optimisation de cavités avec miroirs métalliques et réseaux de Bragg (réflectivité 80-90%). 
+                                            Caractérisation dynamique avec observation du phénomène de spiking et mesure du temps de relaxation. 
+                                            Étude du battement intermodal et analyse spectrale fine. Comparaison des performances entre 
+                                            configurations bidirectionnelle et unidirectionnelle avec isolateur optique.
+                                        </p>
+
+        <div class="project-stats">
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">💡</span> Configuration</div>
+                <div class="stat-value">Linéaire & Anneau</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">🔍</span> Réflectivité FBG</div>
+                <div class="stat-value">80-90%</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">📊</span> Largeur spectrale</div>
+                <div class="stat-value">0.09 nm mesuré</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">⚡</span> Pompage</div>
+                <div class="stat-value">980 nm / 100 mA</div>
+            </div>
+        </div>
+
+        <div class="project-tech">
+            <span class="tech-tag">Laser EDFA</span>
+            <span class="tech-tag">Réseaux de Bragg</span>
+            <span class="tech-tag">Cavité Fabry-Pérot</span>
+            <span class="tech-tag">Pompage 980nm</span>
+            <span class="tech-tag">Spectroscopie optique</span>
+            <span class="tech-tag">Analyse temporelle</span>
+        </div>
+
+        <div class="project-date">2024 - 2025</div>
+    </div>
+
+    <div class="project-visuals">
+        <div class="main-image">
+            <img src="TP/Fibre optique vert.png" alt="Laser EDFA">
+        </div>
+        <div class="thumbnail-grid">
+            <div class="thumbnail">
+                <img src="TP/Spectre optique.png" alt="Cavité linéaire">
+            </div>
+            <div class="thumbnail">
+                <img src="TP/Signal amplifié.png" alt="Spectre laser">
+            </div>
+            <div class="thumbnail">
+                <img src="TP/montage.png" alt="Spiking">
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</article>
+<!-- Projet Photonique 2 -->
+                            <article class="project-card">
+                                <div class="project-info">
+                                    <div class="project-number">02</div>
+                                    <h2 class="project-title">Amplificateurs Optiques EDFA</h2>
+                                    <p class="project-subtitle">Amplification à fibre dopée Erbium</p>
+                                    <div class="project-role">
+                                        <i class="fas fa-chart-line"></i>
+                                        Ingénieur Systèmes Optiques
+                                    </div>
+                                    <p class="project-description">
+                                        Caractérisation d'amplificateurs à fibre dopée Erbium (EDFA) pour systèmes WDM. 
+                                        Mesures de gain, facteur de bruit et puissance de saturation. Analyse de la bande C 
+                                        (1530-1565 nm), optimisation du pompage et étude des non-linéarités.
+                                    </p>
+
+                                    <div class="project-stats">
+                                        <div class="stat-item">
+                                            <div class="stat-label"><span class="stat-icon">📈</span> Gain</div>
+                                            <div class="stat-value">30 dB @ 1550 nm</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-label"><span class="stat-icon">🔊</span> NF</div>
+                                            <div class="stat-value">4.5 dB</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-label"><span class="stat-icon">⚡</span> Puissance pompe</div>
+                                            <div class="stat-value">980 nm / 200 mW</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-label"><span class="stat-icon">📊</span> Saturation</div>
+                                            <div class="stat-value">+17 dBm</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="project-tech">
+                                        <span class="tech-tag">EDFA</span>
+                                        <span class="tech-tag">Fibre dopée Er3+</span>
+                                        <span class="tech-tag">Pompage 980 nm</span>
+                                        <span class="tech-tag">WDM</span>
+                                        <span class="tech-tag">ASE</span>
+                                        <span class="tech-tag">OSNR</span>
+                                    </div>
+
+                                    <div class="project-date">2024 - 2025</div>
+                                </div>
+
+                                <div class="project-visuals">
+                                    <div class="main-image">
+                                        <img src="TP/Fibre optique vert.png" alt="EDFA">
+                                    </div>
+                                    <div class="thumbnail-grid">
+                                        <div class="thumbnail">
+                                            <img src="TP/Signal amplifié.png" alt="Fibre">
+                                        </div>
+                                        <div class="thumbnail">
+                                            <img src="TP/Spectre optique.png" alt="Spectre">
+                                        </div>
+                                        <div class="thumbnail">
+                                            <img src="TP/montage.png" alt="Setup">
+                                        </div>
+                                    </div>
+                                    <div class="nav-buttons">
+                                        <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+                                        <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                            </article>
+
+<!-- Projet Photonique 3 : Caractérisations Spectrales Hétérodyne -->
+<article class="project-card">
+    <div class="project-info">
+        <div class="project-number">03</div>
+        <h2 class="project-title">Caractérisations Spectrales par Méthode Hétérodyne</h2>
+        <p class="project-subtitle">Mesure de largeur de raie laser haute précision</p>
+        <div class="project-role">
+            <i class="fas fa-wave-square"></i>
+            Ingénieur Métrologie Optique
+        </div>
+        <p class="project-description">
+            Caractérisation spectrale fine de lasers DFB par méthodes hétérodyne et auto-hétérodyne. 
+            Mesure de largeur de raie (1,67 MHz à 5 MHz selon configuration), analyse de battement 
+            entre deux lasers, et étude de la cohérence temporelle. Vérification expérimentale de la 
+            loi de Schawlow-Townes reliant largeur de raie et puissance de sortie. Détermination de 
+            la largeur de raie de cavité Fabry-Pérot passive (69,6 MHz).
+        </p>
+
+        <div class="project-stats">
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">📏</span> Largeur de raie</div>
+                <div class="stat-value">1.67 - 5 MHz</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">🔬</span> Méthode</div>
+                <div class="stat-value">Hétérodyne/Auto-hét.</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">📊</span> Laser utilisé</div>
+                <div class="stat-value">DFB 1550 nm</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">⚡</span> Fibre retard</div>
+                <div class="stat-value">500 m SMF</div>
+            </div>
+        </div>
+
+        <div class="project-tech">
+            <span class="tech-tag">Détection hétérodyne</span>
+            <span class="tech-tag">Lasers DFB</span>
+            <span class="tech-tag">Analyse spectrale RF</span>
+            <span class="tech-tag">Photodiode InGaAs</span>
+            <span class="tech-tag">Fibre optique retardatrice</span>
+            <span class="tech-tag">Battement optique</span>
+        </div>
+
+        <div class="project-date">2024 - 2025</div>
+    </div>
+
+    <div class="project-visuals">
+        <div class="main-image">
+            <img src="TP/heterodyne.png" alt="Setup hétérodyne">
+        </div>
+        <div class="thumbnail-grid">
+            <div class="thumbnail">
+                <img src="TP/auto.png" alt="Battement">
+            </div>
+            <div class="thumbnail">
+                <img src="TP/tp3.1.png" alt="Spectre RF">
+            </div>
+            <div class="thumbnail">
+                <img src="TP/tp3.png" alt="Montage">
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</article>
+
+<!-- Projet Photonique 4 : Simulation Numérique EDFA -->
+<article class="project-card">
+    <div class="project-info">
+        <div class="project-number">04</div>
+        <h2 class="project-title">Simulation Numérique d'Amplificateurs EDFA</h2>
+        <p class="project-subtitle">Modélisation MATLAB et optimisation</p>
+        <div class="project-role">
+            <i class="fas fa-laptop-code"></i>
+            Ingénieur Modélisation Photonique
+        </div>
+        <p class="project-description">
+            Modélisation et simulation numérique complète d'amplificateurs à fibre dopée erbium sous MATLAB. 
+            Résolution d'équations différentielles ordinaires pour la dynamique temporelle des systèmes à 3 niveaux. 
+            Étude de l'inversion de population, optimisation de la longueur de fibre et simulation de configurations 
+            co-propagative et contra-propagative. Validation de la loi de Schawlow-Townes et calcul des paramètres 
+            de cavité passive.
+        </p>
+
+        <div class="project-stats">
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">💻</span> Outil</div>
+                <div class="stat-value">MATLAB/Simulink</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">📊</span> Configs simulées</div>
+                <div class="stat-value">Booster & LNA</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">📏</span> Longueur optimale</div>
+                <div class="stat-value">23 m (Booster)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label"><span class="stat-icon">⚡</span> Gain simulé</div>
+                <div class="stat-value">30+ dB</div>
+            </div>
+        </div>
+
+        <div class="project-tech">
+            <span class="tech-tag">MATLAB</span>
+            <span class="tech-tag">ODE Solver</span>
+            <span class="tech-tag">Systèmes 3 niveaux</span>
+            <span class="tech-tag">EDFA</span>
+            <span class="tech-tag">Inversion de population</span>
+            <span class="tech-tag">Optimisation numérique</span>
+        </div>
+
+        <div class="project-date">2024 - 2025</div>
+    </div>
+
+    <div class="project-visuals">
+        <div class="main-image">
+            <img src="TP/matlab.png" alt="Simulation MATLAB">
+        </div>
+        <div class="thumbnail-grid">
+            <div class="thumbnail">
+                <img src="TP/tp4.png" alt="Populations">
+            </div>
+            <div class="thumbnail">
+                <img src="TP/debut.png" alt="Gain vs Pompage">
+            </div>
+            <div class="thumbnail">
+                <img src="TP/tp4.1.png" alt="Propagation">
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</article>
+                            
+                            
+                        </section>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -700,6 +1029,23 @@
     <button class="scroll-to-top" aria-label="Retour en haut">
         <i class="fas fa-arrow-up"></i>
     </button>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Kweneth KIKHOUNGA. Tous droits réservés.</p>
+            <div class="social-links">
+                <a href="https://github.com/kwenethkik" target="_blank" class="social-link" aria-label="GitHub" rel="noopener">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://gitlab.com/kwenethkik" target="_blank" class="social-link" aria-label="GitLab" rel="noopener">
+                    <i class="fab fa-gitlab"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/kweneth-kikhounga-7b6279260/" target="_blank" class="social-link" aria-label="LinkedIn" rel="noopener">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
