@@ -35,6 +35,7 @@
         };
     }
     
+    
     // ==========================================
     // SMOOTH SCROLL NAVIGATION
     // ==========================================
@@ -117,7 +118,6 @@
 
             mobileToggle = document.createElement('button');
             mobileToggle.className = 'mobile-menu-toggle';
-            // Utiliser uniquement l'icône fa-bars (🍔) de Font Awesome
             mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
             mobileToggle.setAttribute('aria-label', 'Toggle mobile menu');
             mobileToggle.setAttribute('type', 'button');
@@ -184,7 +184,6 @@
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
                 if (window.innerWidth > 768) {
-                    // Desktop : fermer le menu et restaurer le scroll
                     navLinks.classList.remove('mobile-open');
                     mobileToggle.classList.remove('active');
                     document.body.style.overflow = '';
@@ -201,10 +200,8 @@
     // ==========================================
     
     function initScrollToTop() {
-        // Vérifier si le bouton existe déjà
         let scrollBtn = document.querySelector('.scroll-to-top');
 
-        // Créer le bouton s'il n'existe pas
         if (!scrollBtn) {
             scrollBtn = document.createElement('button');
             scrollBtn.className = 'scroll-to-top';
@@ -214,7 +211,6 @@
             document.body.appendChild(scrollBtn);
         }
         
-        // Afficher/masquer selon le scroll
         function toggleScrollButton() {
             if (window.pageYOffset > 300) {
                 scrollBtn.classList.add('visible');
@@ -224,16 +220,14 @@
         }
         
         window.addEventListener('scroll', debounce(toggleScrollButton, 100));
-        toggleScrollButton(); // Check initial state
+        toggleScrollButton();
         
-        // Action au clic
         scrollBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
             
-            // Animation de feedback
             scrollBtn.style.transform = 'scale(0.9)';
             setTimeout(() => {
                 scrollBtn.style.transform = '';
@@ -300,54 +294,74 @@
     }
     
     // ==========================================
-    // CV TABS NAVIGATION
+    // CV TABS NAVIGATION + SOUS-ONGLETS
+    // AJOUT NOUVEAU - NE PAS TOUCHER AU RESTE
     // ==========================================
     
     function initCVTabs() {
-        const tabButtons = document.querySelectorAll('.tab-btn');
+        console.log('🛠️ Initialisation des onglets CV...');
+        
+        // Navigation principale (Projets Pro / Académiques)
+        const mainTabs = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
-        
-        if (tabButtons.length === 0) return;
-        
-        function switchTab(targetTab) {
-            // DÃ©sactiver tous les boutons et contenus
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-                content.style.display = 'none';
-            });
-            
-            // Activer le bouton cliquÃ©
-            const activeButton = document.querySelector(`[data-tab="${targetTab}"]`);
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-            
-            // Afficher le contenu correspondant
-            const activeContent = document.getElementById(targetTab);
-            if (activeContent) {
-                activeContent.style.display = 'block';
-                setTimeout(() => {
-                    activeContent.classList.add('active');
-                }, 50);
-            }
+
+        if (mainTabs.length === 0) {
+            console.log('⚠️ Aucun onglet principal trouvé');
+            return;
         }
-        
-        // Ajouter les event listeners aux boutons
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const targetTab = this.getAttribute('data-tab');
-                switchTab(targetTab);
+
+        mainTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+                console.log(`🛠️ Clic onglet principal: ${targetTab}`);
+                
+                // Désactiver tous les onglets et contenus
+                mainTabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Activer l'onglet cliqué
+                tab.classList.add('active');
+                
+                // Afficher le contenu correspondant
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
             });
         });
-        
-        // Initialiser avec l'onglet "experience" actif
-        if (document.getElementById('experience')) {
-            switchTab('experience');
+
+        // Sous-navigation (RF & Hyperfréquences / Photonique)
+        const subTabs = document.querySelectorAll('.sub-tab-btn');
+        const subContents = document.querySelectorAll('.sub-content');
+
+        if (subTabs.length > 0) {
+            console.log(`🛠️ ${subTabs.length} sous-onglets trouvés`);
+            
+            subTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetSubtab = tab.dataset.subtab;
+                    console.log(`🛠️ Clic sous-onglet: ${targetSubtab}`);
+                    
+                    // Désactiver tous les sous-onglets et sous-contenus
+                    subTabs.forEach(t => t.classList.remove('active'));
+                    subContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Activer le sous-onglet cliqué
+                    tab.classList.add('active');
+                    
+                    // Afficher le sous-contenu correspondant
+                    const targetSubContent = document.getElementById(targetSubtab);
+                    if (targetSubContent) {
+                        targetSubContent.classList.add('active');
+                    }
+                });
+            });
         }
         
-        console.log('âœ… Onglets CV initialisÃ©s');
+        console.log('✅ Onglets CV initialisés avec succès');
     }
+    
+    // FIN AJOUT NOUVEAU
     
     // ==========================================
     // PROJECT GALLERY NAVIGATION
@@ -402,21 +416,17 @@
                 thumb.addEventListener('click', function() {
                     console.log(`🖼️ Clic sur thumbnail ${thumbIndex + 1}`);
 
-                    // Animation de l'image principale
                     mainImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     mainImage.style.opacity = '0';
                     mainImage.style.transform = 'scale(0.95)';
                     
                     setTimeout(() => {
-                        // Échanger les sources
                         const tempSrc = mainImage.src;
                         mainImage.src = thumbImg.src;
                         thumbImg.src = tempSrc;
 
-                        // Mettre à jour l'index
                         currentIndex = images.indexOf(mainImage.src);
                         
-                        // Restaurer l'animation
                         mainImage.style.opacity = '1';
                         mainImage.style.transform = 'scale(1)';
                     }, 300);
@@ -429,7 +439,6 @@
                 navBtns[0].addEventListener('click', () => {
                     console.log('🖼️ Navigation précédente');
 
-                    // Effet visuel sur le bouton
                     navBtns[0].style.transform = 'scale(0.9)';
                     setTimeout(() => {
                         navBtns[0].style.transform = '';
@@ -452,7 +461,6 @@
                 navBtns[1].addEventListener('click', () => {
                     console.log('🖼️ Navigation suivante');
 
-                    // Effet visuel sur le bouton
                     navBtns[1].style.transform = 'scale(0.9)';
                     setTimeout(() => {
                         navBtns[1].style.transform = '';
@@ -473,7 +481,7 @@
             }
         });
         
-        // Support du clavier (flÃ¨ches gauche/droite)
+        // Support du clavier (flèches gauche/droite)
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
                 const firstCard = document.querySelector('.project-card');
@@ -541,12 +549,10 @@
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             
-            // Animation de soumission
             submitBtn.textContent = 'Envoi en cours...';
             submitBtn.style.opacity = '0.7';
             submitBtn.disabled = true;
             
-            // Simuler l'envoi
             setTimeout(() => {
                 submitBtn.textContent = 'Message envoyé !';
                 submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
